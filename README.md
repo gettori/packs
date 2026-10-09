@@ -20,8 +20,15 @@ pack reaches Tori through its next snapshot, or through the folder below.
 | `formatters/` | Formatters | `<id>.toml` |
 | `themes/` | Themes | `<id>.json` |
 | `agents/` | Agents | `<id>.toml` |
+| `icons/` | An agent's logo, optional | `<id>.svg` |
 
 A file's name is its `id`. Ids match `^[a-z0-9][a-z0-9._-]*$`.
+
+An icon belongs to the agent with the same id, so `icons/<id>.svg` needs an
+`agents/<id>.toml`. Tori draws only its shape, in the theme's text colour, so
+draw it in one colour on a transparent background. The validator wants it
+under 32 KB, with an `<svg>` root that has a `viewBox`, and with no
+`<script>`, no `<foreignObject>` and no `on*` attribute.
 
 The schema for each kind is documented in the Tori repo:
 [LSP-SERVERS.md](https://github.com/gettori/tori/blob/main/docs/LSP-SERVERS.md),
@@ -90,3 +97,9 @@ leaks: [MAINTAINING.md](MAINTAINING.md).
 
 Apache-2.0. See [LICENSE](LICENSE). Each pack's own `license` field covers
 what that pack describes.
+
+The files in `icons/` are the logos of the products they name and belong to
+their owners; the license above does not cover them. They are here to tell
+one agent from another, not to claim any endorsement. The bundled ones come
+from [Simple Icons](https://simpleicons.org) (CC0), except Codex's, which
+comes from [lobe-icons](https://github.com/lobehub/lobe-icons) (MIT).
