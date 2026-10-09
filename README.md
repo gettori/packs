@@ -81,6 +81,11 @@ Tori runs what a pack tells it to, so the validator limits what that can be.
 
 A reviewer still reads every file.
 
+## Maintaining
+
+How the index is signed and published, and what to do when a credential
+leaks: [MAINTAINING.md](MAINTAINING.md).
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE). Each pack's own `license` field covers
