@@ -1,0 +1,1831 @@
+{
+  "generated_at": "2026-10-09T21:16:36Z",
+  "expires": "2026-11-08T21:16:36Z",
+  "packs_commit": "f8c68d19df55a18f30516e71d1b97893cfcdc702",
+  "rows": [
+    {
+      "kind": "lsp",
+      "id": "astro",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "dbfcd3ea1ee84a80fe5b6c63c034b83867a8356d397345f7c32e811aca49a7a1",
+      "label": "Astro",
+      "description": "Astro components, through the Astro language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "@astrojs/language-server 2.17.2",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/astro.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "bash",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "6fdc49481ec35d0675ce52b2bbfa82950b3aa9bece020d8171354670519a14ac",
+      "label": "Bash",
+      "description": "Bash and sh scripts, through bash-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "bash-language-server 5.8.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/bash.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "biome",
+      "role": "secondary",
+      "schema_version": 1,
+      "sha256": "63113b7396de51fc0d000c37863c5ae0757a540abf3a810986ea0e3b6f9fd40b",
+      "label": "Biome",
+      "description": "Biome's lint diagnostics and fixes for JavaScript, TypeScript and JSON",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "biome 2.5.14",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/biome.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "clangd",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "13cbece6496054c8e61da126c12a514a0918b72088610421671327397fe1fbb1",
+      "label": "C / C++ (clangd)",
+      "description": "C and C++, through clangd",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "clangd 22.1.6",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/clangd.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "clojure",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "6cc407a7cd485390fea8406211b71d7ec654afec819bc4580ce6fd8a048ce42e",
+      "label": "Clojure",
+      "description": "Clojure, ClojureScript and EDN, through clojure-lsp",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "clojure-lsp 2026.07.06-14.34.19",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/clojure.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "csharp",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "2ed18842a7b686d7b7cd13492480a99ad39f5621d779fb63bec70380206c6071",
+      "label": "C#",
+      "description": "C#, through csharp-ls",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "csharp-ls 0.28.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/csharp.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "css",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "3d9da936dbd59f07c9656524db030ca0dca92e67ba1c88e81198953b75af8231",
+      "label": "CSS",
+      "description": "CSS, SCSS and Less, through the VS Code CSS language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vscode-langservers-extracted 4.10.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/css.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "dart",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "a16d996c823b0d3ec433922b45e7fbfc89294c64926d2f60d48a84a2834e475a",
+      "label": "Dart",
+      "description": "Dart and Flutter, through the Dart SDK's language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "Dart SDK 3.13.5",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/dart.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "elixir",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "102705870da6f52e33b08fdc230a5ffbda9746073afd35fda3a3aaa1069c28fb",
+      "label": "Elixir",
+      "description": "Elixir, through ElixirLS",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "elixir-ls 0.31.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/elixir.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "elm",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "40387c61d4f2595f3d1639f25b25c26bb2a4e25d5a1e60f0d8cafc60c3f440ce",
+      "label": "Elm",
+      "description": "Elm, through elm-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "@elm-tooling/elm-language-server 2.8.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/elm.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "eslint",
+      "role": "secondary",
+      "schema_version": 1,
+      "sha256": "f13d2961e863722fdefc6179887c026cfd16b2f3ddbc86597fb2453abb907080",
+      "label": "ESLint",
+      "description": "ESLint diagnostics and fixes beside the TypeScript server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vscode-langservers-extracted 4.10.0",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/eslint.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "fish",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "d6140a73574c7f77cdfdd8213c1e5810dba9f060a8c56e632eb18ddf839098e9",
+      "label": "fish",
+      "description": "fish shell scripts, through fish-lsp",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "fish-lsp 1.1.4",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/fish.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "go",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "252ac859a51ee40de220252c1b7fd296467a6e52d61e95896d4b004747074f2f",
+      "label": "Go",
+      "description": "Go, through gopls",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "gopls v0.23.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/go.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "graphql",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "661e3050fb2c94bcd9d16f9fb4f5fda0a6d70098801e5a622e327b1cd7d0edbb",
+      "label": "GraphQL",
+      "description": "GraphQL schemas and queries, through the GraphQL language service",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "graphql-language-service-cli 3.5.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/graphql.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "haskell",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "2dd0b59531731a23af499f3d4d37e723d64f66aea74b8e20fdf9dac11c7edaac",
+      "label": "Haskell",
+      "description": "Haskell, through haskell-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "haskell-language-server 2.15.0.0 (GHC 9.14.1)",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/haskell.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "html",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "824d47972406bc3a42bdec630479fb403b564cc3fb7fbd9e523509a3142e2e0f",
+      "label": "HTML",
+      "description": "HTML, through the VS Code HTML language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vscode-langservers-extracted 4.10.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/html.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "java",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "ca456c277dd5bf9990bcaac3677ed7f9ff99d7bc8d8b608a44ce86a2c35b7e8a",
+      "label": "Java",
+      "description": "Java, through the Eclipse JDT language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "jdtls 1.61.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/java.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "json",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "d01551eb3aa9c46b0a10743ed78100b3e3dc947b16a5de577be950a8dda72604",
+      "label": "JSON",
+      "description": "JSON and JSONC with SchemaStore schemas, through the VS Code JSON server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vscode-json-languageserver 1.3.4",
+      "verified_on": "2026-08-05",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/json.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "kotlin",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "5879a174b0f3395022b31abdf9e696bce83f9ff571d06e58e549f8ed83477409",
+      "label": "Kotlin",
+      "description": "Kotlin, through kotlin-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "kotlin-language-server 1.3.13",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/kotlin.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "latex",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "0257f04160df4ef2b9594e9fcbfa9cea35802f9b6d1f72672232d0c88665d508",
+      "label": "LaTeX (TexLab)",
+      "description": "LaTeX and BibTeX, through TexLab",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "texlab 5.26.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/latex.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "lua",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "d951e241599f80186a0f3df174a18747c07ad189ef89d455a77c5da71d209df1",
+      "label": "Lua",
+      "description": "Lua, through lua-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "lua-language-server 3.19.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/lua.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "markdown",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "2cf00fd5587aa168863766e774ef8a2fc8c7c4ac8e4074bf5d19c9d229adfec6",
+      "label": "Markdown (Marksman)",
+      "description": "Markdown links, headings and references, through Marksman",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "marksman 2026-02-08",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/markdown.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "ocaml",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "0f2451beb34c18872460e594c9be37ddd15594a51ae6cb33292eb18a5e4073fb",
+      "label": "OCaml",
+      "description": "OCaml, through ocaml-lsp",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "ocaml-lsp-server 1.26.0 (OCaml 5.4.1)",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/ocaml.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "oxlint",
+      "role": "secondary",
+      "schema_version": 1,
+      "sha256": "72115aeb4815afdc7f1f66e11894223959c7c17ad2361185ab260f6e5cc4478c",
+      "label": "oxlint",
+      "description": "oxlint diagnostics and fixes for JavaScript and TypeScript",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "oxlint 1.85.0",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/oxlint.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "perl",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "09e4a6459534dea5b67db78652045497dce84bba29fef0a15f0a34f17f8bb838",
+      "label": "Perl",
+      "description": "Perl, through Perl Navigator",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "perlnavigator-server 0.8.20",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/perl.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "php",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "b9c8a53cd668519b88211a8b37951578ff740de0993d71878e4d5939202a2922",
+      "label": "PHP (Intelephense)",
+      "description": "PHP, through Intelephense",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "intelephense 1.18.5",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/php.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "prisma",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "9a145129e04d114efec7a322cc61fbfc5601e382399c1912c70f6a310f4f680a",
+      "label": "Prisma",
+      "description": "Prisma schemas, through the Prisma language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "@prisma/language-server 31.12.10",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/prisma.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "python",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "2d6460c38ae794a029ff42e9dba2d6836aeafbc6512a7ee9ad46a34666d50f48",
+      "label": "Python (pyright)",
+      "description": "Python type checking and navigation, through pyright",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "pyright 1.1.414",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/python.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "ruby",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "0ff4e4a09b939af945addca753fa9b1cce423bff6258b0001d892d3eced69ff6",
+      "label": "Ruby",
+      "description": "Ruby, through Ruby LSP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "ruby-lsp 0.26.11",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/ruby.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "ruff",
+      "role": "secondary",
+      "schema_version": 1,
+      "sha256": "9aa0021b958598e10d555db7841f89ebedd728e679050b020b0d763b2000f748",
+      "label": "Ruff",
+      "description": "Ruff lint diagnostics and fixes beside the Python server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "ruff 0.16.8",
+      "verified_on": "2026-09-22",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/ruff.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "rust",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "c7e6b5c002f738da176888b7bf8b5b9f22136269f85edbb8d2db14405e8ddf43",
+      "label": "Rust",
+      "description": "Rust, through rust-analyzer",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "rust-analyzer 1.98.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/rust.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "scala",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "571800839e6bfaa8dc08bedfae18ae289fa8a8377d3b73fdafa6d9ddd1f77377",
+      "label": "Scala",
+      "description": "Scala, through Metals",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "metals 1.6.9",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/scala.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "svelte",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "a40fa0085d16426d33dd5c50c2cd1438636a3ffc3d6b2f08d468bd88b7dc1b44",
+      "label": "Svelte",
+      "description": "Svelte components, through the Svelte language server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "svelte-language-server 0.18.4",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/svelte.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "swift",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "50fd18651ecc7327cf4f9cbc56c240c264870697be9fb57102bf3370adb219bf",
+      "label": "Swift",
+      "description": "Swift, through SourceKit-LSP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "sourcekit-lsp from Swift 6.4 (Xcode 27.0)",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/swift.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "terraform",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "157e75d347fe3932a5d5e2de3393ace460e8efcde0c50674638bfe37d7bb2fc9",
+      "label": "Terraform",
+      "description": "Terraform, through terraform-ls",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "terraform-ls 0.39.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/terraform.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "toml",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "bb833798519501c8b3bee8e2c1c2fd8a5507f4a0804bf7cefc050c5eee84c9eb",
+      "label": "TOML (Tombi)",
+      "description": "TOML, through Tombi",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "tombi 1.5.5",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/toml.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "typescript",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "489f82fda1216a5ba728176b32840e2b628384a76e5365e37568a01d58f755d3",
+      "label": "TypeScript / JavaScript",
+      "description": "TypeScript and JavaScript, through typescript-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "typescript-language-server 4.4.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/typescript.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "typst",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "2366b71e35f74e1c05f0ebc1f3261a201a6fc6dcf1bc47616f0dc6fda3908c93",
+      "label": "Typst (Tinymist)",
+      "description": "Typst, through Tinymist",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "tinymist 0.15.8",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/typst.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "vim",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "fd0e19f1df3f3748f8a1418e412f49712b3af8526007df79ced9cbd4250bc413",
+      "label": "Vim script",
+      "description": "Vim script, through vim-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vim-language-server 2.3.1",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/vim.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "xml",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "22d1bff4a20615ea5cb34f08c1912812b7f37615545ab46c0b64b8aa7d546699",
+      "label": "XML (LemMinX)",
+      "description": "XML and XSD, through LemMinX",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "lemminx 0.29.3",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "macos"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/xml.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "yaml",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "92aa576f9b4838e347af1a83e5f59550874fa1a1c046d43b84c50e93c6e06bad",
+      "label": "YAML",
+      "description": "YAML with SchemaStore schemas, through yaml-language-server",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "yaml-language-server 1.24.0",
+      "verified_on": "2026-08-05",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/yaml.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "lsp",
+      "id": "zig",
+      "role": "primary",
+      "schema_version": 1,
+      "sha256": "fd29be70b909d67c5637353af96299fc43a1ee0cafc4f18602d36ab509d0257e",
+      "label": "Zig",
+      "description": "Zig, through ZLS",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "zls 0.16.0",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/lsp/zig.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "dap",
+      "id": "debugpy",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "809c16fe6ccca3491942858e1256765e28c3c4fe93fe84aec890a6a5b749566c",
+      "label": "Python (debugpy)",
+      "description": "Debug Python scripts and tests with debugpy",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "1.8.22",
+      "verified_on": "2026-09-22",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/dap/debugpy.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "dap",
+      "id": "delve",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "64a2ed56e6e56da2861445641a93dc5a4c0f6b3d4a75b8e3b68073ba12b1743c",
+      "label": "Go (Delve)",
+      "description": "Debug Go programs and tests with Delve",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "dlv 1.27.2",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/dap/delve.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "dap",
+      "id": "lldb",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "e7d845d44f17d2f3d7f786917b738d56205d74045e6b57038581a4242003c7d3",
+      "label": "Rust, C and C++ (lldb-dap)",
+      "description": "Debug Rust, C and C++ with lldb-dap",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "lldb-dap 21.0.0 (Xcode 27.0)",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/dap/lldb.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "biome",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "dc9f0772119330ab52cf03c5e4d53ce6066dfa49349fb5c97ea4d2e302ae2d40",
+      "label": "Biome",
+      "description": "Format JavaScript, TypeScript, JSON and CSS with Biome",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "biome 2.5.14",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/biome.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "black",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "ed891203a145098b620fedfcce6d0b2015443d0b025ae0ede41e1a81b3ab9f28",
+      "label": "Black",
+      "description": "Format Python with Black",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "black 26.5.1",
+      "verified_on": "2026-09-22",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/black.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "gofmt",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "809d513d523e791bf7364b40e14f5bda6d9ab95e23a4ec4ac1a25b3839765861",
+      "label": "gofmt",
+      "description": "Format Go with gofmt",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "go1.27.1",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/gofmt.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "oxfmt",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "21f15172bacc48f534978e4b3dbbcc56298fd6ecd6610d9d3df095fe63b3d820",
+      "label": "oxfmt",
+      "description": "Format JavaScript and TypeScript with oxfmt",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "oxfmt 0.70.0",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/oxfmt.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "prettier",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "0f843bdf51aac446f593b977b4a2a853ea55bc95c4c28201499fc5a06a9d61a9",
+      "label": "Prettier",
+      "description": "Format JavaScript, TypeScript, CSS, Markdown and more with Prettier",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "prettier 3.9.8",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/prettier.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "ruff",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "8d09fd1d975e34b4c67107ec8d8d7b54be1a78f8bdbda61a36465f6f2c10fb3b",
+      "label": "Ruff",
+      "description": "Format Python with Ruff",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "ruff 0.16.8",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/ruff.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "shfmt",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "b5878db5b2a062b1211967e503a75d32a870e08ee16ceec71767b2ad67f74dc6",
+      "label": "shfmt",
+      "description": "Format shell scripts with shfmt",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "shfmt v3.14.1",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/shfmt.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "stylua",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "9413b3ed666014e7cb6622b29f40c1b5c694ab095b9600163f32fbde2ea6c53d",
+      "label": "StyLua",
+      "description": "Format Lua and Luau with StyLua",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "stylua 2.5.2",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/stylua.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "formatters",
+      "id": "vite-plus",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "223c669851a40449b287f4f0ff435e45074b3f753720d16f453c95562da3f9bc",
+      "label": "Vite+",
+      "description": "Format through Vite+ (vp fmt) in projects that use it",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "vite-plus 0.3.3",
+      "verified_on": "2026-09-21",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/formatters/vite-plus.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "atom-one-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "d1858e3bee10e8ebbad9416c4285f4f8fdd3e828ee696e82e0f79a0c76f611f6",
+      "label": "Atom One Light",
+      "description": "A port of Atom's One Light",
+      "contributor": {
+        "name": "GitHub",
+        "github": "atom"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/atom-one-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "ayu-dark",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "8e9073c92c2cdf849677a2eb34b2a510d4ee32c5a1766e2ff5747401688095ab",
+      "label": "Ayu Dark",
+      "description": "A port of ayu's dark variant",
+      "contributor": {
+        "name": "Ike Kurghinyan",
+        "github": "dempfi"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/ayu-dark.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "ayu-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "9235852bcb35a4c5e1fda42e6556264ed62fd1383c30b1aec598d9278fa67a2a",
+      "label": "Ayu Light",
+      "description": "A port of ayu's light variant",
+      "contributor": {
+        "name": "Ike Kurghinyan",
+        "github": "dempfi"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/ayu-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "catppuccin-frappe",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "345dc7a21ac21f68b6fd3e96a8dae9883ec51c4eb0536ddfbd461c83959262ce",
+      "label": "Catppuccin Frappé",
+      "description": "A port of Catppuccin Frappe",
+      "contributor": {
+        "name": "Catppuccin",
+        "github": "catppuccin"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/catppuccin-frappe.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "catppuccin-latte",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "d19a715a2b704f87111ec9456919d60130b29c360b3d19391cffcbc64e5e8e4e",
+      "label": "Catppuccin Latte",
+      "description": "A port of Catppuccin Latte",
+      "contributor": {
+        "name": "Catppuccin",
+        "github": "catppuccin"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/catppuccin-latte.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "catppuccin-macchiato",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "5c379e5a997dd333e967a41e637952cb296eb97c0729485ae4cc1de87a10c345",
+      "label": "Catppuccin Macchiato",
+      "description": "A port of Catppuccin Macchiato",
+      "contributor": {
+        "name": "Catppuccin",
+        "github": "catppuccin"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/catppuccin-macchiato.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "catppuccin-mocha",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "7e020c950e700c145c12314e6ba430ba4fb2af2ac61731f5a435e1d73d9e117b",
+      "label": "Catppuccin Mocha",
+      "description": "A port of Catppuccin Mocha",
+      "contributor": {
+        "name": "Catppuccin",
+        "github": "catppuccin"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/catppuccin-mocha.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "dracula",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "c8cc58079ba2c31475ed74c7c9b1ba8ef97dd056011fbe9e8acefee9266ef686",
+      "label": "Dracula",
+      "description": "A port of Dracula",
+      "contributor": {
+        "name": "Dracula Theme",
+        "github": "dracula"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/dracula.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "github-dark",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "541b7fcf30080292d19a47dd46e66e562c3c235721a7ee1354255e9f4fcb3cf0",
+      "label": "GitHub Dark",
+      "description": "A port of GitHub's dark theme",
+      "contributor": {
+        "name": "Primer",
+        "github": "primer"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/github-dark.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "github-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "91acde7328d74e6e9e4c22c62710b17b495091e00667c29379d229a963d1eab7",
+      "label": "GitHub Light",
+      "description": "A port of GitHub's light theme",
+      "contributor": {
+        "name": "Primer",
+        "github": "primer"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/github-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "night-owl",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "5a39b1cf61553accc0590bb865c53c7b34ca30ad7df9fc3ad747633e9947e985",
+      "label": "Night Owl",
+      "description": "A port of Night Owl",
+      "contributor": {
+        "name": "Sarah Drasner",
+        "github": "sdras"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/night-owl.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "nord",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "fb0a761882a73fe80023fb393460c4ca170ba7624ec5f67b6dcfbc6250bc7b19",
+      "label": "Nord",
+      "description": "A port of Nord",
+      "contributor": {
+        "name": "Sven Greb",
+        "github": "svengreb"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/nord.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "one-dark-pro",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "a059ccf94d86e20c5aa2cb0d81ffce9ba8ef5d196c329c650440c82f469f609a",
+      "label": "One Dark Pro",
+      "description": "A port of One Dark Pro",
+      "contributor": {
+        "name": "Binaryify",
+        "github": "Binaryify"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/one-dark-pro.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "quiet-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "6927b47dda2831d8147f7dd9157d02de5d3cd4bd9a63a4014b2c1e0319d05569",
+      "label": "Quiet Light",
+      "description": "A port of Quiet Light from VS Code",
+      "contributor": {
+        "name": "Microsoft",
+        "github": "microsoft"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/quiet-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "rose-pine-dawn",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "b38450f90baa982ab465ae563e37d127eaaf78fb112d68e78e927ec62b393293",
+      "label": "Rosé Pine Dawn",
+      "description": "A port of Rose Pine Dawn",
+      "contributor": {
+        "name": "Rose Pine",
+        "github": "rose-pine"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/rose-pine-dawn.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "shades-of-purple",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "edb1c9e1885c103ae8691ea3ff0e0a069746bb8309e32f52c1f00d52bd448e1d",
+      "label": "Shades of Purple",
+      "description": "A port of Shades of Purple",
+      "contributor": {
+        "name": "Ahmad Awais",
+        "github": "ahmadawais"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/shades-of-purple.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "solarized-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "f56bdb4e06eaf004897991964d858d90cf000e4c31a6a91323871204c01adc26",
+      "label": "Solarized Light",
+      "description": "A port of Solarized Light",
+      "contributor": {
+        "name": "Ethan Schoonover",
+        "github": "altercation"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/solarized-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "synthwave-84",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "aacea1a658c0e1a9fce8350d77a7d9cc2873eb6a88bdf8cda0b15f3c9bb9eb27",
+      "label": "SynthWave '84",
+      "description": "A port of SynthWave '84",
+      "contributor": {
+        "name": "Robb Owen",
+        "github": "robb0wen"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/synthwave-84.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "tokyo-night",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "3ebd6ac0b854cf03800e28a1ef55bebaedd1c7398d1b2800a8f8e6e99e613a75",
+      "label": "Tokyo Night",
+      "description": "A port of Tokyo Night",
+      "contributor": {
+        "name": "Enkia",
+        "github": "enkia"
+      },
+      "license": "MIT",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/tokyo-night.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "tori-dark",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "e3a14e4ea0236a745351106948a0a62751b4551c7c8f503670783e95bcf8c0c8",
+      "label": "Tori Dark",
+      "description": "Tori's own dark theme, the default",
+      "contributor": {
+        "name": "Tori",
+        "github": "gettori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/tori-dark.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "themes",
+      "id": "tori-light",
+      "role": null,
+      "schema_version": 1,
+      "sha256": "c45c51a3e0d57d2f14b0fdb0e03f8377b0f923dda8006c7c0f43d97e82621e65",
+      "label": "Tori Light",
+      "description": "Tori's own light theme",
+      "contributor": {
+        "name": "Tori",
+        "github": "gettori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": null,
+      "verified_on": null,
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/themes/tori-light.json",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "agents",
+      "id": "claude",
+      "role": null,
+      "schema_version": 5,
+      "sha256": "88a2c2ac86ccac67bca94fc48ab04882b0ce338da55cf200597d867ee0163d04",
+      "label": "Claude",
+      "description": "Claude Code, with chat over its stream-json protocol",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "claude 2.1.231",
+      "verified_on": "2026-08-14",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/agents/claude.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "agents",
+      "id": "codex",
+      "role": null,
+      "schema_version": 4,
+      "sha256": "42c699f5c3371d33b1582fde4244b698d0cca4b14c918ecc5f2ae561ad1db2d1",
+      "label": "Codex",
+      "description": "OpenAI's Codex CLI, with chat over ACP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "codex-cli 0.155.1 with @agentclientprotocol/codex-acp 1.12.0",
+      "verified_on": "2026-09-20",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/agents/codex.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "agents",
+      "id": "copilot",
+      "role": null,
+      "schema_version": 3,
+      "sha256": "5df881494496b02bede8258e314e2eccec9e0b2609f62795aad94e36d121c5e1",
+      "label": "Copilot",
+      "description": "GitHub Copilot CLI, with chat over ACP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "copilot 1.0.94",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/agents/copilot.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "agents",
+      "id": "opencode",
+      "role": null,
+      "schema_version": 3,
+      "sha256": "20233ebaa65a46906d670c537419ff76a06365db37d191359dd9b6cfc5dfefd5",
+      "label": "OpenCode",
+      "description": "OpenCode, with chat over ACP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "opencode 1.18.3",
+      "verified_on": "2026-08-14",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/agents/opencode.toml",
+      "min_tori": "26.1009.0-alpha"
+    },
+    {
+      "kind": "agents",
+      "id": "pi",
+      "role": null,
+      "schema_version": 2,
+      "sha256": "269bc5a4a0b6f840ecb62e64050e4512b9c1446b23629697d7379dbcf0341a4e",
+      "label": "Pi",
+      "description": "The pi coding agent, with chat over ACP",
+      "contributor": {
+        "github": "gettori",
+        "name": "Tori"
+      },
+      "license": "Apache-2.0",
+      "verified_against": "pi 0.82.1 with pi-acp 0.0.33",
+      "verified_on": "2026-10-09",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
+      "url": "https://gettori.app/packs/files/agents/pi.toml",
+      "min_tori": "26.1009.0-alpha"
+    }
+  ]
+}
