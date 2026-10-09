@@ -1,0 +1,39 @@
+# Checks every pull request with the tori CLI itself, the same loaders the app
+# runs, at the oldest and the newest release tori-support.json names. Every
+# pack is checked offline; the changed ones also have their release assets
+# downloaded and hashed and their pinned packages looked up.
+#
+# No secrets and a read-only token: this runs on contributors' files.
+name: Validate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate with each supported Tori
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          versions=$(jq -r '[.[][]] | unique | .[]' tori-support.json | sort -V)
+          changed=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- lsp dap formatters themes agents)
+          for v in $(printf '%s\n' "$versions" | sed -n '1p;$p' | sort -u); do
+            echo "::group::tori $v"
+            .github/scripts/tori-cli.sh "$v" "$RUNNER_TEMP/tori-$v"
+            "$RUNNER_TEMP/tori-$v/tori" validate-pack .
+            if [ -n "$changed" ]; then
+              "$RUNNER_TEMP/tori-$v/tori" validate-pack --assets --registry $changed
+            fi
+            echo "::endgroup::"
+          done
