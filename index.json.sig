@@ -1,4 +1,4 @@
 {
   "key_id": "k1",
-  "signature": "U9gaIgYO8RNJh0j+x0ZD/XD/tPIcrk8lNaIfPjyLe3ptCgLMld+Gd8QB4GbX45069VCWLUDg9wuAlXAEa+VADQ=="
+  "signature": "2tFEjiuCnR+mdSTLs1esOkX7SR91uQQyrG93sBT9Z+90KBT1HbUdRSMJ7MC3kWzIhfZQEXzMkVOEjk83Wf3yCg=="
 }
