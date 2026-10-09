@@ -1,0 +1,23 @@
+# Ruff's formatter, from the project's own virtualenv or the login PATH. See
+# FORMATTERS.md.
+
+schema_version = 1
+id = "ruff"
+label = "Ruff"
+description = "Format Python with Ruff"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+extensions = ["py", "pyi"]
+
+verified_against = "ruff 0.16.8"
+verified_on = "2026-09-21"
+
+[markers]
+files = ["ruff.toml", ".ruff.toml"]
+keys = [{ file = "pyproject.toml", key = "tool.ruff" }]
+
+[launch]
+kind = "project_bin"
+program = "ruff"
+# `--stdin-filename` is what finds the config and the per-file settings.
+args = ["format", "--stdin-filename", "{file}", "-"]
