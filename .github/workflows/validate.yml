@@ -1,0 +1,53 @@
+# Checks every pull request with the tori CLI itself, the same loaders the app
+# runs. The newest release tori-support.json names checks every pack offline,
+# builds the index (so a schema_version missing from tori-support.json fails
+# here, not at publish), and downloads and hashes the changed packs' assets and
+# looks up their pinned packages. The oldest release loads only the packs
+# whose min_tori is that release: a pack at a newer schema is not its to read.
+#
+# No secrets and a read-only token: this runs on contributors' files.
+name: Validate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate with each supported Tori
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          versions=$(jq -r '[.[][]] | unique | .[]' tori-support.json | sort -V)
+          oldest=$(printf '%s\n' "$versions" | head -1)
+          newest=$(printf '%s\n' "$versions" | tail -1)
+          changed=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- lsp dap formatters themes agents)
+
+          echo "::group::tori $newest, every pack"
+          .github/scripts/tori-cli.sh "$newest" "$RUNNER_TEMP/newest"
+          "$RUNNER_TEMP/newest/tori" validate-pack .
+          "$RUNNER_TEMP/newest/tori" packs-index .
+          if [ -n "$changed" ]; then
+            "$RUNNER_TEMP/newest/tori" validate-pack --assets --registry $changed
+          fi
+          echo "::endgroup::"
+
+          if [ "$oldest" != "$newest" ]; then
+            echo "::group::tori $oldest, the packs it supports"
+            supported=$(jq -r --arg v "$oldest" '.rows[] | select(.min_tori == $v) | .url | sub("^.*/packs/files/"; "")' index.json)
+            .github/scripts/tori-cli.sh "$oldest" "$RUNNER_TEMP/oldest"
+            if [ -n "$supported" ]; then
+              "$RUNNER_TEMP/oldest/tori" validate-pack $supported
+            fi
+            echo "::endgroup::"
+          fi

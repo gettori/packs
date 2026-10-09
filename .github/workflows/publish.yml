@@ -1,0 +1,70 @@
+# Signs the index after every merge to main, and weekly so a quiet repo never
+# lets it reach its 30-day expiry, then asks the site to rebuild.
+#
+# The index goes to the orphan `published` branch, not main: main requires a
+# pull request and this workflow's token cannot bypass that. The signature is
+# what Tori trusts, so where the bytes sit adds nothing.
+#
+# The signing key is a secret of the `publish` environment, which only main
+# may deploy to, so a workflow edited on another branch cannot read it.
+name: Publish
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: macos-latest
+    environment: publish
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: packs
+
+      - uses: actions/checkout@v4
+        with:
+          ref: published
+          path: published
+
+      - name: Sign the index
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PACKS_SIGNING_KEY: ${{ secrets.PACKS_SIGNING_KEY }}
+        run: |
+          v=$(jq -r '[.[][]] | unique | .[]' packs/tori-support.json | sort -V | tail -1)
+          packs/.github/scripts/tori-cli.sh "$v" "$RUNNER_TEMP/tori"
+          "$RUNNER_TEMP/tori/tori" packs-index packs --sign-key-env PACKS_SIGNING_KEY --key-id k1
+          mv packs/index.json packs/index.json.sig published/
+
+      - name: Commit to published
+        working-directory: published
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.json index.json.sig
+          git commit -m "Index for $(jq -r .packs_commit index.json)"
+          git push origin HEAD:published
+
+      # Until the hook exists the index still publishes; the site just keeps
+      # serving the previous one.
+      - name: Rebuild the site
+        env:
+          SITE_DEPLOY_HOOK: ${{ secrets.SITE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$SITE_DEPLOY_HOOK" ]; then
+            echo "::warning::SITE_DEPLOY_HOOK is not set, so the site was not rebuilt"
+            exit 0
+          fi
+          curl -fsS -X POST "$SITE_DEPLOY_HOOK" > /dev/null
