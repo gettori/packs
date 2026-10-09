@@ -1,0 +1,166 @@
+schema_version = 4
+id = "codex"
+label = "Codex"
+description = "OpenAI's Codex CLI, with chat over ACP"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+icon = "codex"
+
+# Measured against this pair with
+# `node dev/acp-probe.mjs --agent codex-acp --per-model`, most recently
+# 2026-09-20. Two versions because
+# two binaries are involved: the PTY tab runs the `codex` a user installed, and
+# the chat surface runs the ACP wrapper below, which drives that same `codex`
+# underneath. `verified_against` is compared against `codex --version`, and
+# health.rs reads the first semver-looking token, so the `codex-cli` version has
+# to come first.
+verified_against = "codex-cli 0.155.1 with @agentclientprotocol/codex-acp 1.12.0"
+verified_on = "2026-09-20"
+
+[launch]
+program = "codex"
+# The TUI, for a PTY tab. Unrelated to the chat surface below, which launches
+# the ACP wrapper instead.
+base_args = []
+# Codex's own "skip all confirmation prompts and execute without sandboxing".
+# Its help calls it EXTREMELY DANGEROUS, the same standing as claude's
+# `--dangerously-skip-permissions` and opencode's `--auto`.
+yolo_args = ["--dangerously-bypass-approvals-and-sandbox"]
+# Empty, which the UI reads as "this agent's sessions can't be resumed" (see
+# ADAPTERS.md) rather than mis-resuming. Codex does have its own resume, but the
+# id Tori holds for an ACP row is Tori's own: see opencode.toml for the full
+# reasoning, which applies here unchanged.
+resume_args = []
+
+# No [discovery], [parser] or [running]: a protocol-backed adapter reaches its
+# sessions through ACP, never through files. See opencode.toml.
+
+[capabilities]
+pty_quiet_ms = 2000
+# Not claimed. The quiet-PTY join is Claude-shaped and unmeasured against
+# Codex's TUI, and a chat tab does not need it: over ACP the agent asks
+# in-protocol and Tori renders the question.
+needs_you = false
+hooks = false
+
+# --- schema v3: accounts ---
+#
+# Measured 2026-08-14 against the `codex-cli` named in `verified_against`.
+#
+# `codex login status` puts the entire answer in its exit code: 0 signed in, 1
+# not, with the prose ("Logged in using ChatGPT" / "Not logged in") on **stderr**
+# and stdout empty. So `whoami_kind = "exit_code"`, and Tori learns no account
+# name from it - Codex does not print one, and inventing a parse of that prose
+# would be a guess about a sentence nobody promised to keep.
+#
+# **No `home_env`, and `supports_isolation` is absent (so false).** `CODEX_HOME`
+# does relocate the credential store: pointed at an empty directory, the probe
+# reports not-logged-in while the real home stays signed in. What has *not* been
+# measured is the thing isolation actually claims - two accounts holding
+# simultaneous logins without one signing the other out - because that needs a
+# second Codex account. Until somebody runs it, Codex offers no "add account"
+# action, which is the honest rendering of "we do not know".
+[accounts]
+login_args = ["login"]
+logout_args = ["logout"]
+whoami_args = ["login", "status"]
+whoami_kind = "exit_code"
+
+# --- schema v4: usage ---
+#
+# **No `sessions` rung, measured rather than assumed.** The `app-server`
+# underneath does send `account/rateLimits/updated` around a turn, but
+# `codex-acp` 1.2.0 files it into its own state and emits no session update
+# (`acp_transport::tests::codex_forwards_no_rate_limits_over_acp`, 2026-09-06);
+# the only way back out is `/status`, as markdown prose. So Codex's quota costs
+# a read Tori schedules for itself: `usage_probe.rs` drives
+# `codex app-server` for `account/rateLimits/read`, which answers the two
+# windows, the plan and the credit balance in one exchange.
+[usage]
+sources = ["cli"]
+
+[chat]
+transport = "acp"
+# **Codex is the one bundled adapter whose chat binary is not its launch
+# binary.** `codex app-server` exists and other clients drive it, but `codex` has
+# no `acp` subcommand, so the first-party wrapper is how Codex reaches an ACP
+# client. Measured 2026-08-14 against both on one live turn: the wrapper carries
+# the permission prompt, the exact before-and-after diff, the same four models
+# and the same token-only usage that the native app-server does, for one TOML
+# file instead of a second typed transport over `codex app-server generate-ts`.
+# That surface is also moving: it went from 598 files / 6,230 lines on 0.144.5 to
+# 642 / 6,923 on 0.147.0, three patch versions apart and inside one afternoon.
+# What the wrapper gives up is `thread/archive`, `thread/rollback`,
+# `thread/fork` and `turn/steer`, none of which Tori drives over ACP anyway.
+program = "npx"
+# Pinned to the version measured, matching how the ACP catalog pins its own
+# rows. `npx -y @agentclientprotocol/codex-acp` unpinned would silently move the
+# agent underneath a `verified_against` that names 1.12.0.
+base_args = ["-y", "@agentclientprotocol/codex-acp@1.12.0"]
+
+# All empty because ACP has no command line for any of it, not because Codex
+# lacks the feature. Measured on the handshake instead:
+#
+#   * ids are minted by the agent inside `session/new`,
+#   * resume is `session/load`; `sessionCapabilities` advertises
+#     `resume, list, close, delete, additionalDirectories`,
+#   * a model switch is `session/set_config_option`,
+#   * modes arrive as config options: `mode` (read-only, agent,
+#     agent-full-access) and `collaboration_mode` (default, plan),
+#   * reasoning effort is a `thought_level` select with six levels
+#     (low, medium, high, xhigh, max, ultra).
+#
+# Re-measured 2026-08-17 with the catalogue probe (`catalog_probe.rs`, live test
+# `the_real_codex_answers_a_catalogue_from_one_session`), which reads the same
+# handshake without submitting a turn. Four config options, and two findings
+# worth keeping:
+#
+#   * the effort selector's **id is `reasoning_effort`** while its **category is
+#     `thought_level`**. Tori selects by category, which is the only reason it
+#     finds this at all: opencode's ids happen to match their categories, and
+#     matching on the id here would have found nothing.
+#   * `collaboration_mode` is categorized as *itself*, so no bespoke control
+#     claims it. It is the first live option to reach the chat's generic mirror,
+#     and before that mirror existed it was read off the wire and dropped.
+#
+# `session/list` is advertised and answered, **scoped to the asking session's
+# cwd**: a chat in a project directory is told about that directory's sessions
+# and nothing else. So a probe session in Tori's probe directory is out of a
+# user's history twice over, the agent's scoping and `adopt`'s own filter.
+session_id_args = []
+resume_args = []
+fork_args = []
+model_args = []
+effort_args = []
+mode_args = []
+add_dir_args = []
+
+# No [[chat.models]].
+#
+# Measured 2026-09-20: the handshake advertises five (`gpt-5.6-sol`,
+# `gpt-6-astra`, `gpt-5.6-terra`, `gpt-5.6-luna`, `gpt-5.5`). There is no
+# shortfall to publish,
+# and the list is per account: signed *out*, the same call returned seven, which
+# is a reminder that a catalogue measured without an account is not this user's.
+# A bundled table would be a guess about somebody else's entitlement, and the
+# picker takes the live list whenever there is one.
+
+# No [[chat.modes]] or [[chat.effort]] either: all three selectors above arrive
+# on the handshake, which is what the ACP transport reads them from.
+
+[chat.acp]
+# Measured doing its own file I/O, so the client's fs stays declined.
+serve_client_fs = false
+# Measured with dev/mcp-probe.mjs --acp on 1.12.0: it starts a server handed in
+# `mcpServers`, passes the `env` pairs through, and the model calls the tool
+# with no `session/request_permission`.
+send_mcp_servers = true
+
+[install]
+# npm names the package that ships the launch binary, and all three verbs were
+# run on macOS. The binary lands in npm's global bin, which has to be on the
+# login shell's PATH for Tori to find it.
+program = "npm"
+args = ["install", "-g", "@openai/codex"]
+update_args = ["install", "-g", "@openai/codex"]
+uninstall_args = ["uninstall", "-g", "@openai/codex"]

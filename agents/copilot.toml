@@ -1,0 +1,83 @@
+schema_version = 3
+id = "copilot"
+label = "Copilot"
+description = "GitHub Copilot CLI, with chat over ACP"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+icon = "copilot"
+
+# Measured with `node dev/acp-probe.mjs --agent copilot` as far as the
+# handshake: 1.0.94 starts with `--acp` and answers `initialize`, but the
+# measuring account has no Copilot CLI access, so `session/new` was refused with
+# a 403. Everything past the handshake (models, modes, permission prompts) is
+# read from the agent at runtime, which is why the handshake is the part this
+# file can be wrong about.
+verified_against = "copilot 1.0.94"
+verified_on = "2026-10-09"
+
+[launch]
+program = "copilot"
+base_args = []
+# Copilot CLI's own "approve every tool". From its documentation, untested
+# like everything here.
+yolo_args = ["--allow-all-tools"]
+# Empty: the UI reads this as "this agent's sessions can't be resumed" rather
+# than mis-resuming. See opencode.toml for why an ACP row's id is Tori's own.
+resume_args = []
+
+# No [discovery], [parser] or [running]: a protocol-backed adapter reaches its
+# sessions through ACP, never through files. See opencode.toml.
+
+[capabilities]
+pty_quiet_ms = 2000
+# Not claimed, and here not measurable at all until the CLI is installed.
+needs_you = false
+hooks = false
+
+[chat]
+transport = "acp"
+# `copilot --acp` is the Copilot CLI's first-party ACP mode.
+base_args = ["--acp"]
+
+# All empty for the same reason as opencode's: ACP carries sessions, models and
+# modes in the protocol rather than on the command line.
+session_id_args = []
+resume_args = []
+fork_args = []
+model_args = []
+effort_args = []
+mode_args = []
+add_dir_args = []
+
+# No [[chat.models]]: whatever this agent advertises on its handshake is what
+# the picker will show. Declaring a table here would be a guess that overrides
+# nothing (the live catalogue wins) until the day it is the only list, which is
+# exactly the day it would be wrong.
+
+[chat.acp]
+# Left at the safe default, like every unmeasured ACP adapter.
+serve_client_fs = false
+
+[install]
+# `npm install -g @github/copilot` is the one documented install that covers
+# every platform (Node 22+). The docs also offer brew and a curl script; npm is
+# chosen because it names the same package this adapter's launch is read from.
+program = "npm"
+args = ["install", "-g", "@github/copilot"]
+# npm's own semantics: `install -g` on an installed package moves it to the
+# latest published version, so the update verb is the install command again,
+# and `uninstall -g` is its documented removal.
+update_args = ["install", "-g", "@github/copilot"]
+uninstall_args = ["uninstall", "-g", "@github/copilot"]
+
+[accounts]
+# `copilot login` is the CLI's first-party OAuth command: browser flow on a
+# local terminal, device code on a remote one. From the CLI reference
+# (2026-08), untested like the rest of this file.
+login_args = ["login"]
+# No whoami_args: the reference documents no non-interactive status command,
+# so sign-in state stays unknown rather than guessed. No logout_args either:
+# `/logout` exists only inside the interactive session.
+#
+# No supports_isolation: `COPILOT_HOME` is documented to relocate config and
+# state, but nobody has measured two simultaneous logins through it.

@@ -1,0 +1,421 @@
+schema_version = 5
+id = "claude"
+label = "Claude"
+description = "Claude Code, with chat over its stream-json protocol"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+icon = "claude"
+# The CLI these conventions were empirically captured against. The chat
+# transport below is a measurement of this version's wire format, so a drift
+# warning against a newer binary is meaningful rather than cosmetic.
+#
+# Left at 2.1.231 on purpose: only the MCP surface (`--mcp-config` beside
+# `--settings`, `--strict-mcp-config`) was re-measured, on 2.1.278 and 2.1.280
+# with dev/mcp-probe.mjs. The rest of this file was not.
+verified_against = "claude 2.1.231"
+verified_on = "2026-08-14"
+
+[launch]
+program = "claude"
+base_args = []
+yolo_args = ["--dangerously-skip-permissions"]
+resume_args = ["--resume", "{id}"]
+
+[discovery]
+dir = "~/.claude/projects"
+filename_pattern = '^(?P<id>.+)\.jsonl$'
+
+[parser]
+kind = "claude_jsonl"
+
+[running]
+# ERE for `pgrep -f`; matches a live claude process driving this session id, not
+# merely any process whose command line contains the id (a `less`/`tail` on the
+# transcript file, an editor with it open).
+#
+# The `([^ ]+ )*` is load-bearing, and was measured rather than assumed. The
+# original `claude (--resume|-r) {id}` required the flag to sit immediately
+# after the program name, which is true of a PTY agent tab (`claude --resume
+# <id>`) but false of **every chat session**: the chat transport puts its
+# base_args first, so the real command line is `claude -p --input-format
+# stream-json ... --resume <id>`. Chats were therefore invisible to
+# `session_running`, and so to every guard built on it. A new chat was doubly
+# invisible, since it is started with `--session-id` and never `--resume`.
+#
+# Matching a run of whole argument tokens keeps the decoys out: a `tail` on
+# `~/.claude/projects/<p>/<id>.jsonl` has no flag token before the id.
+pattern = 'claude ([^ ]+ )*(--resume|-r|--session-id) {id}'
+
+[capabilities]
+# Empirically confirmed (2026-07-18, phase 2 capture): a real permission
+# prompt (`--permission-mode plan`, "Would you like to proceed?") leaves the
+# PTY fully silent for 9s+ while waiting; a 20s Bash tool run stays noisy
+# throughout (spinner redraws every <=0.62s). 2000ms sits well above the
+# noisy-phase gaps and far below the observed blocked-silence duration.
+pty_quiet_ms = 2000
+needs_you = true
+# Verified (2026-07-18, phase 3 spike + capture): `--settings <inline JSON>`
+# injects a `Notification`/`UserPromptSubmit`/`PreToolUse`/`Stop` hook set
+# without touching ~/.claude/settings.json (see crate::hooks); Notification
+# fires when claude itself decides it needs the user (a permission prompt or
+# an idle nudge), replacing the quiet-PTY x pending-tool_use guess with a
+# ground-truth signal for Tori-launched sessions only.
+hooks = true
+
+# --- schema v3: accounts ---
+#
+# Measured 2026-08-14 against the CLI named in `verified_against`, not read
+# from documentation.
+#
+# `supports_isolation = true` is earned, not assumed: two profiles held
+# simultaneous logins for the same account, because claude namespaces its
+# macOS Keychain service by config dir
+# ("Claude Code-credentials-" + sha256($CLAUDE_CONFIG_DIR)[:8], with the
+# default home taking the unsuffixed name). A second login therefore cannot
+# sign the first one out. That measurement is darwin-only; Linux has no login
+# Keychain and has not been measured.
+#
+# The hash is taken over the raw environment string rather than a resolved
+# path, so ".../home" and ".../home/" are two different logins for one
+# directory. Tori canonicalizes before setting `home_env` for exactly that
+# reason.
+#
+# `login_args` runs in a real PTY and never headlessly: `claude auth login` is
+# browser OAuth with no non-interactive variant, and `setup-token` is
+# interactive too, so a captured login would hang rather than fail.
+#
+# `whoami_args` is the one probe Tori runs captured, and it is safe to: measured
+# both ways, `claude auth status` writes JSON to stdout and exits 0 signed in, 1
+# signed out. It also names the account (`email`) and, when one is inherited,
+# the environment variable supplying an API key (`apiKeySource`), which is where
+# the billing-override warning comes from rather than from Tori sniffing its own
+# environment.
+#
+# `logout_args` is non-interactive too: measured against an isolated home with
+# nothing signed in, it printed "Successfully logged out" and exited 0.
+#
+# `home_default` is where CLAUDE_CONFIG_DIR points when it is unset, and it is
+# what makes a second account's history findable: measured in Phase 0, a session
+# run under an isolated home wrote its transcript to
+# "<isolated home>/projects/<slugified-cwd>/<uuid>.jsonl" and the shared
+# ~/.claude/projects gained nothing. So a profile's root is the `dir` below with
+# this prefix swapped for that profile's home, and the layout under it is the
+# same one.
+#
+# `home_markers`: an adopted folder must be empty or already hold one, since the
+# add-time `whoami` writes into whatever it is pointed at. Measured 2026-09-14:
+# `claude auth status` on an empty CLAUDE_CONFIG_DIR wrote `.claude.json` there.
+[accounts]
+home_env = "CLAUDE_CONFIG_DIR"
+home_default = "~/.claude"
+home_markers = [".claude.json", "settings.json", "projects"]
+login_args = ["auth", "login"]
+logout_args = ["auth", "logout"]
+whoami_args = ["auth", "status"]
+whoami_kind = "claude_json"
+supports_isolation = true
+# The interactive CLI runs its first-run wizard (theme, then login) whenever
+# this key is unset, credentials or not. `auth login` never sets it.
+onboarded_file = ".claude.json"
+onboarded_key = "hasCompletedOnboarding"
+plugins_kind = "claude_installed_json"
+
+# --- schema v4: the usage source ladder ---
+#
+# Declaration order is the ladder's order, and the first entry is what an agent
+# resolves to when the user has chosen nothing.
+#
+# `sessions` first because it is free: `rate_limit_event` already rides the chat
+# transport, so the reading costs nothing and needs no extra process, and it is
+# what an account nobody has answered for resolves to.
+#
+# `token` is the deeper rung and the only route to the model-scoped weekly
+# window, which no passive frame carries. It reads this account's own OAuth token
+# out of the login Keychain, so it is never a default: the user turns it on
+# knowing macOS will ask. `cli` stays undeclared because claude has no
+# non-interactive usage command; that gap is the CLI's, not a phase Tori owes.
+[usage]
+sources = ["sessions", "token"]
+
+# --- schema v5: the files claude reads out of an account home ---
+#
+# Every `path` is relative to the account home: `[accounts].home_default` for
+# the default account, that profile's own home for any other. Measured against
+# 2.1.263, by reading the shipped binary's own loader rather than the docs:
+#
+#   * `rules` is read **at user level**, not only per project. The memory loader
+#     pushes `gpe({rulesDir: fge(), type: "User"})` alongside the user CLAUDE.md,
+#     where `fge()` is `join(<user config dir>, "rules")`, and the walk takes
+#     `*.md` recursively. This row is here because that was measured; it was to
+#     be left out otherwise, since a row for a directory nothing reads is worse
+#     than no row.
+#   * `skills` is a **folder** per skill: `skills/<name>/SKILL.md`, which the
+#     CLI's own help states in those words.
+#   * `agents` and `commands` are **single files**: the CLI's scaffolder writes
+#     `agents/example.md`, and its help calls commands `~/.claude/commands/*.md`.
+#     So a subagent is `agents/<name>.md`, not a folder, which is why `new_path`
+#     is declared per row rather than inferred from the row's id.
+#
+# `~/.claude.json` is deliberately absent: it is live state (session cursors,
+# project history), not something a person edits.
+[config]
+
+[[config.entries]]
+id = "instructions"
+label = "Instructions"
+path = "CLAUDE.md"
+kind = "file"
+
+[[config.entries]]
+id = "skills"
+label = "Skills"
+path = "skills"
+kind = "dir"
+new_path = "{name}/SKILL.md"
+new_name_hint = "skill-name"
+template = '''
+---
+name: {name}
+description:
+---
+'''
+
+[[config.entries]]
+id = "commands"
+label = "Commands"
+path = "commands"
+kind = "dir"
+new_path = "{name}.md"
+new_name_hint = "command-name"
+
+[[config.entries]]
+id = "agents"
+label = "Subagents"
+path = "agents"
+kind = "dir"
+new_path = "{name}.md"
+new_name_hint = "subagent-name"
+template = '''
+---
+name: {name}
+description:
+---
+'''
+
+[[config.entries]]
+id = "rules"
+label = "Rules"
+path = "rules"
+kind = "dir"
+new_path = "{name}.md"
+new_name_hint = "rule-name"
+
+# Seeded with an empty object rather than an empty file: claude parses this one
+# as JSON and reports a zero-byte file as a settings error.
+[[config.entries]]
+id = "settings"
+label = "Settings and hooks"
+path = "settings.json"
+kind = "file"
+template = "{}\n"
+
+# --- schema v2: the structured chat transport ---
+#
+# Everything below was measured against the CLI named in `verified_against`,
+# not read from documentation; `dev/protocol-probe.mjs` re-verifies the wire
+# format these args produce.
+#
+# NOTE: every scalar key here must stay above the first [[chat.*]] header. A
+# TOML key written after a table header belongs to that table, so moving one
+# down silently reparents it.
+[chat]
+transport = "claude_stream_json"
+# `-p` with stream-json both ways, and stdin held open for the life of the
+# session. Closing stdin is what made early probes exit after a single turn;
+# the CLI itself is happy to run many.
+base_args = [
+  "-p",
+  "--input-format", "stream-json",
+  "--output-format", "stream-json",
+  "--verbose",
+  "--include-partial-messages",
+  # Puts the user's own hooks in the transcript in-band. Tori's injected
+  # approval hook rides the same stream and is folded away by default (it
+  # stamps its own output so it can be told apart; `hook_name` reports the
+  # tool, not the matcher, so the name cannot identify it).
+  "--include-hook-events",
+  # Permission questions come back in-protocol as a `can_use_tool`
+  # control_request that Tori answers with a `control_response`, instead of
+  # Tori deciding for itself in a `PreToolUse` hook. This is what makes the
+  # agent's own permission modes real: `default` asks, `acceptEdits` and
+  # `bypassPermissions` do not, and Tori renders whatever the CLI decided to
+  # ask rather than overriding it.
+  #
+  # Undocumented on purpose, it seems: the flag is absent from `claude --help`
+  # on 2.1.231, yet it parses (an unknown flag exits with "unknown option") and
+  # a `default`-mode `Write` produces the control_request. So this is a
+  # measurement of a working but unlisted flag, which is exactly the kind of
+  # thing `verified_against` above exists to re-check on a version bump.
+  "--permission-prompt-tool", "stdio",
+  # NOT `--settings {"fastMode":true}`, and the reason is worth keeping.
+  #
+  # It was here for one commit, on the reading that the flag was an *opt-in*:
+  # without it a `-p` session reports `fast_mode_disabled_reason:
+  # "sdk_opt_in_required"`, and passing it moves the reason on to whatever the
+  # account says. That much is measured and true. What it is not is inert. The
+  # CLI's own settings schema reads "When true, fast mode is enabled. When
+  # absent or false, fast mode is off", so on any account that *can* serve fast
+  # mode, this turned it on for every chat Tori opened.
+  #
+  # It looked harmless only because the machine it was measured on has usage
+  # credits disabled, so `fast_mode_state` stayed `off` and the flag appeared to
+  # do nothing. A measurement that agrees with a wrong reading is the most
+  # expensive kind.
+  #
+  # Fast mode is a thing the user turns on, and it costs them credits, so it
+  # belongs on a control rather than in the args every chat is spawned with.
+]
+session_id_args = ["--session-id", "{id}"]
+resume_args = ["--resume", "{id}"]
+# Forking replays an existing conversation into a **new** session id. Measured:
+# `--resume <old> --fork-session --session-id <new>` honours the id we pass and
+# reports it back, which is what lets Tori claim the fork before starting it -
+# a CLI-chosen id would be claimed only after the fact, if at all. `{from}` is
+# the session being forked; `{id}` is the new one, and the template carries both
+# because a fork is the one case where the two differ.
+fork_args = ["--resume", "{from}", "--fork-session", "--session-id", "{id}"]
+model_args = ["--model", "{model}"]
+effort_args = ["--effort", "{effort}"]
+mode_args = ["--permission-mode", "{mode}"]
+add_dir_args = ["--add-dir", "{dir}"]
+# Measured on 2.1.285: `-p` shows no workspace trust dialog, so a folder's own
+# `.claude/settings.json` hooks run on the first message. `user` leaves them out
+# and keeps the user's settings and Tori's `--settings` file.
+untrusted_args = ["--setting-sources", "user"]
+
+# No [[chat.models]]. **Tori declares no model this CLI did not name.**
+#
+# There used to be a table of four here, carrying labels, context windows and
+# effort levels. It was the picker's fallback and the meter's pre-first-turn
+# denominator, and it was wrong at both. Sonnet 5 and Opus 5 both said 200000
+# while the agent reported 1000000 for each (dev/fixtures/claude/plain-turn.jsonl
+# and fast-mode.jsonl, provider `firstParty`), and Fable's figure was inferred
+# from the `[1m]` suffix on a catalogue value by a build that had never run a
+# Fable turn. A session that never handshook offered all four regardless of what
+# the installed CLI could actually run.
+#
+# All of it comes from the agent now: the model list and the effort levels from
+# the `initialize` control response (live, or cached by `catalog_probe`), the
+# context window from a completed turn's `result.modelUsage`. Nothing renders
+# before one of those has spoken, which is the point.
+#
+# `[[chat.annotations]]` used to survive here, carrying one model's fast mode.
+# It is gone too: the handshake publishes `supportsFastMode` per model, so the
+# table was restating the CLI in a spelling the CLI does not use
+# (`claude-opus-5` against a resolved `claude-opus-5[1m]`) and matched nothing.
+
+# The six permission modes `--permission-mode` accepts and honours, and they now
+# mean what they say: Tori's hook no longer decides anything, so nothing runs
+# ahead of them and `bypassPermissions` bypasses permissions.
+#
+# `manual` is deliberately absent. The CLI accepts it, but its own help calls it
+# "an alias for 'default'" and the wire agrees: `--permission-mode manual`
+# reports `permissionMode: "default"` at init. A row for it would be a second
+# way to pick a mode already on the list.
+#
+# Hints are the CLI's own wording, from the `--permission-mode` description it
+# embeds. A mode says what the agent may do without asking, so the description
+# is quoted rather than improvised.
+[[chat.modes]]
+id = "default"
+label = "Ask"
+hint = "Standard behavior, prompts for dangerous operations."
+args = ["--permission-mode", "default"]
+# What a session runs when nothing is chosen, and what an unresolvable mode
+# downgrades to. Marked rather than assumed: "default" is Claude's spelling,
+# and the resolver that reads this must not carry it to another agent.
+default = true
+
+[[chat.modes]]
+id = "acceptEdits"
+label = "Accept edits"
+hint = "Auto-accept file edit operations."
+args = ["--permission-mode", "acceptEdits"]
+
+[[chat.modes]]
+id = "plan"
+label = "Plan"
+hint = "Planning mode, no actual tool execution."
+args = ["--permission-mode", "plan"]
+
+[[chat.modes]]
+id = "auto"
+label = "Auto"
+hint = "Use a model classifier to approve/deny permission prompts."
+args = ["--permission-mode", "auto"]
+# Measured: a model that does not declare `supportsAutoMode` (haiku declares
+# none of the capability flags) accepts this flag, exits 0, and silently runs
+# `default` instead. Nothing on the wire objects, so the row is hidden here
+# rather than offered and quietly ignored.
+requires = "supportsAutoMode"
+
+[[chat.modes]]
+id = "dontAsk"
+label = "Don't ask"
+hint = "Don't prompt for permissions, deny if not pre-approved."
+args = ["--permission-mode", "dontAsk"]
+
+[[chat.modes]]
+id = "bypassPermissions"
+label = "Bypass"
+hint = "Bypass all permission checks."
+args = ["--permission-mode", "bypassPermissions"]
+# Runs every tool without asking anyone. Not the retired `permissive_caveat`
+# wearing a new name: that declared a warning about *Tori*, which stopped being
+# true when Tori stopped gating. This declares what the mode itself does, which
+# was always true and matters more now that nothing catches it afterwards. Only
+# this mode: `acceptEdits` still asks about everything that is not an edit, and
+# `dontAsk` denies rather than runs.
+permissive = true
+
+# No [[chat.effort]] either, and for the same reason [[chat.models]] went. It
+# listed the five levels `--effort` accepts, which is a list the agent already
+# publishes per model (`supportedEffortLevels`) and publishes better: haiku has
+# none, and the table offered it all five. `effort_args` above says how to spell
+# a level, for whichever levels the catalogue turns out to name.
+#
+# What is left is the opposite kind of claim: a level the CLI accepts and never
+# mentions. `--effort --help` advertises low/medium/high/xhigh/max, and the
+# validator quietly takes one more.
+#
+# Measured by dev/effort-probe.mjs, first on 2.1.237 and re-taken unchanged on
+# 2.1.238, which is the version the row below names. The observable is the CLI's
+# own validator: `--effort ultracode --version` writes no "Unknown --effort
+# value" warning, where `off`, `ultra`, `ultrathink`, `none`, `minimal` and `auto` all
+# do. That is this CLI asserting the word is one of its own, which is a
+# different thing from the `--permission-mode auto` trap, where a flag is
+# accepted on a model that ignores it and nothing anywhere says so.
+#
+# A behavioural second observable was built and measured and does not work: the
+# thinking-token count is the model's discretion, and paired runs gave `off`
+# 466/0/0 against `ultracode` 0/0/1633. The probe's header carries the numbers
+# and the reasoning; the short version is that a check flipping on model mood is
+# a check nobody reads.
+#
+# `measured_on` is what keeps this honest. It is a claim about a binary, so it
+# holds for that binary and degrades to a disabled row naming both versions on
+# any other, rather than silently outliving the measurement.
+[[chat.effort_extras]]
+id = "ultracode"
+label = "Ultracode"
+state = "working"
+measured_on = "2.1.238 (Claude Code)"
+
+[install]
+# npm names the package that ships the launch binary, and all three verbs were
+# run on macOS. The binary lands in npm's global bin, which has to be on the
+# login shell's PATH for Tori to find it.
+program = "npm"
+args = ["install", "-g", "@anthropic-ai/claude-code"]
+update_args = ["install", "-g", "@anthropic-ai/claude-code"]
+uninstall_args = ["uninstall", "-g", "@anthropic-ai/claude-code"]

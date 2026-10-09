@@ -1,0 +1,146 @@
+schema_version = 3
+id = "opencode"
+label = "OpenCode"
+description = "OpenCode, with chat over ACP"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+icon = "opencode"
+
+# Measured against this build with dev/acp-probe.mjs. Unlike claude.toml, almost
+# nothing below is a captured wire format: an ACP adapter's job is to say how to
+# *launch* the agent, and everything else - the model list, the session modes,
+# what a permission prompt offers - is read from that agent's own handshake at
+# runtime. So this file is short on purpose, and a shorter file is the point of
+# the ACP transport rather than a gap in this one.
+verified_against = "opencode 1.18.3"
+verified_on = "2026-08-14"
+
+[launch]
+program = "opencode"
+# The TUI, for a PTY tab. Nothing to do with the chat surface below, which
+# launches `opencode acp` instead.
+base_args = []
+# `--auto` is opencode's own "approve anything not explicitly denied". Its help
+# calls it dangerous, which is the same standing as claude's
+# `--dangerously-skip-permissions`.
+yolo_args = ["--auto"]
+# Deliberately empty, which the UI reads as "this agent's sessions can't be
+# resumed" (see ADAPTERS.md) and says so rather than mis-resuming.
+#
+# opencode *does* accept `--session <id>`, so this is not a missing capability
+# of the CLI. It is that the id Tori holds for an ACP row is **Tori's own**: the
+# agent's id lives in the locator store (chat/acp_sessions.rs) and only the chat
+# path reads it. Substituting `{id}` here would hand opencode an id it never
+# minted, and it would start a fresh session while claiming to resume one.
+resume_args = []
+
+# No [discovery], [parser] or [running].
+#
+# All three describe sessions that are files on disk, and an ACP agent's are
+# not: the id is minted inside `session/new`, the conversation is reached with
+# `session/load`, and every session of one agent shares the command line
+# `opencode acp`, so a pgrep pattern would report all of them running whenever
+# any one was. Tori records what the protocol told it in its own locator store
+# instead, which sessions.rs merges in beside adapter discovery. Omitting the
+# three is what the loader requires of a protocol-backed transport; declaring
+# plausible values would be worse than declaring none.
+
+[capabilities]
+pty_quiet_ms = 2000
+# The quiet-PTY x pending-tool_use join is Claude-shaped and has not been
+# measured against opencode's TUI, so it is not claimed. A chat tab does not
+# need it: over ACP the agent asks in-protocol and Tori renders the question.
+needs_you = false
+hooks = false
+
+# --- schema v3: accounts ---
+#
+# Measured 2026-08-14 against the build named in `verified_against`.
+#
+# **`opencode auth list` exits 0 whether or not anything is signed in.** It is
+# the reason `whoami_kind` exists at all: read the exit code, as the obvious
+# generic reader would, and OpenCode reports itself signed in while holding no
+# credentials. What actually differs is the last line of its own table, `1
+# credentials` against `0 credentials`, so that count is what Tori reads.
+#
+# A count, not an identity. OpenCode's credentials are per *provider* (the
+# measured install held one, GitHub Copilot), so "signed in" here means at least
+# one provider is configured, and there is no account name to learn.
+#
+# **No `logout_args`.** `opencode auth logout` takes a provider argument and
+# prompts when it is missing, so there is no single command that signs this
+# agent out. Left empty on purpose: an empty list is the state the removal
+# flow has to say out loud, and it is truer than a command that would sit
+# waiting for a keystroke nobody sent.
+#
+# **No `home_env`.** `XDG_DATA_HOME` does relocate `auth.json` (measured: the
+# probe reports 0 credentials under a fresh one), but that variable is not
+# OpenCode's to own, and nothing has measured two accounts holding simultaneous
+# logins. So no isolation is claimed and no "add account" action is offered.
+[accounts]
+login_args = ["auth", "login"]
+whoami_args = ["auth", "list"]
+whoami_kind = "opencode_credentials"
+
+[chat]
+transport = "acp"
+
+# Its model names arrive as a "Provider/Name" path with the id repeating the
+# route in lowercase ("GitHub Copilot/Claude Sonnet 4.6" over
+# "github-copilot/claude-sonnet-4.6"; measured on opencode acp 1.18.3).
+# Lets the picker split them for display; the wire id is never rewritten.
+split_model_names = true
+# The whole launch. `opencode acp` speaks ACP over stdio, and Tori spawns the
+# child itself (transport::build_command, so PATH comes from a login shell)
+# rather than letting the SDK spawn it.
+base_args = ["acp"]
+
+# Every one of these is empty because ACP has no command line for it, not
+# because opencode lacks the feature:
+#
+#   * session ids are minted by the agent inside `session/new`,
+#   * resume is `session/load`, fork is `session/fork`,
+#   * a model switch is `session/set_config_option` (measured: `session/set_model`
+#     does not exist in ACP 2.0.0),
+#   * modes are a `mode`-category config option the agent advertises, measured
+#     as `build` and `plan` on 1.18.3.
+session_id_args = []
+resume_args = []
+fork_args = []
+model_args = []
+effort_args = []
+mode_args = []
+add_dir_args = []
+
+# No [[chat.models]].
+#
+# Measured 2026-08-14 on opencode 1.18.3: `session/new` answers with a
+# `model`-category select carrying 15 provider-qualified ids
+# (`github-copilot/claude-sonnet-4.6`, `opencode/big-pickle`, ...), and
+# `opencode models` reports the same 15. So the live catalogue is complete, and
+# it is also **per user**: it lists the providers that account has authenticated,
+# which a bundled table cannot know. The picker takes the live list whenever
+# there is one and falls back to this table only when there is not, so leaving
+# it empty is what makes the picker show the user's own models rather than a
+# hand-maintained guess about somebody else's.
+
+# No [[chat.modes]] either, for the same reason: `build` and `plan` arrive as a
+# config option on the handshake.
+
+[chat.acp]
+# The two per-agent departures from a spec-correct client. It does its own file
+# I/O, so the client's fs stays declined.
+serve_client_fs = false
+# Measured with dev/mcp-probe.mjs --acp on 1.18.3: it starts a server handed in
+# `mcpServers`, passes the `env` pairs through, and the model calls the tool
+# with no `session/request_permission`.
+send_mcp_servers = true
+
+[install]
+# npm names the package that ships the launch binary, and all three verbs were
+# run on macOS. The binary lands in npm's global bin, which has to be on the
+# login shell's PATH for Tori to find it.
+program = "npm"
+args = ["install", "-g", "opencode-ai"]
+update_args = ["install", "-g", "opencode-ai"]
+uninstall_args = ["uninstall", "-g", "opencode-ai"]

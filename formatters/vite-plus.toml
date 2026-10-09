@@ -1,0 +1,24 @@
+# Vite+ (`vp fmt`), from the project's own install. See FORMATTERS.md.
+#
+# No markers: `vp fmt` is oxfmt reading the `fmt` block of the root
+# vite.config.ts, and every Vite project has that file whether or not it formats
+# with vp. It runs only when `format.byExtension` names it.
+
+schema_version = 1
+id = "vite-plus"
+label = "Vite+"
+description = "Format through Vite+ (vp fmt) in projects that use it"
+license = "Apache-2.0"
+contributor = { name = "Tori", github = "gettori" }
+
+verified_against = "vite-plus 0.3.3"
+verified_on = "2026-09-21"
+
+[launch]
+kind = "project_bin"
+program = "vp"
+args = ["fmt", "--stdin-filepath", "{file}"]
+
+[not_applicable]
+exit_code = 1
+stderr = "Unsupported file type"
