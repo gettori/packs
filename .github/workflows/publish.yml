@@ -1,5 +1,6 @@
-# Signs the index after every merge to main, and weekly so a quiet repo never
-# lets it reach its 30-day expiry, then asks the site to rebuild.
+# Signs the index with the newest tori release after every merge to main, and
+# weekly so a quiet repo never lets it reach its 14-day expiry, then asks the
+# site to rebuild.
 #
 # The index goes to the orphan `published` branch, not main: main requires a
 # pull request and this workflow's token cannot bypass that. The signature is
@@ -43,8 +44,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PACKS_SIGNING_KEY: ${{ secrets.PACKS_SIGNING_KEY }}
         run: |
-          v=$(jq -r '[.[][]] | unique | .[]' packs/tori-support.json | sort -V | tail -1)
-          packs/.github/scripts/tori-cli.sh "$v" "$RUNNER_TEMP/tori"
+          packs/.github/scripts/tori-cli.sh newest "$RUNNER_TEMP/tori"
           "$RUNNER_TEMP/tori/tori" packs-index packs --sign-key-env PACKS_SIGNING_KEY --key-id k1
           mv packs/index.json packs/index.json.sig published/
 
