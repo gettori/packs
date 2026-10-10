@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-09T22:32:12Z",
-  "expires": "2026-11-08T22:32:12Z",
-  "packs_commit": "0d7bdd05b1a22b90794129f3750e5370c0859fff",
+  "generated_at": "2026-10-10T08:35:54Z",
+  "expires": "2026-10-24T08:35:54Z",
+  "packs_commit": "3656172dda77d0eb583db3768b08355e653b4dd8",
   "rows": [
     {
       "kind": "lsp",
@@ -1732,8 +1732,10 @@
         "macos",
         "windows"
       ],
+      "icon_sha256": "b1216892909902929993ceb9f09afa12a6fed0f849ed8ab741dda6bd73e80c62",
       "url": "https://gettori.app/packs/files/agents/claude.toml",
-      "min_tori": "26.1009.0-alpha"
+      "min_tori": "26.1009.0-alpha",
+      "icon_url": "https://gettori.app/packs/files/icons/claude.svg"
     },
     {
       "kind": "agents",
@@ -1755,8 +1757,10 @@
         "macos",
         "windows"
       ],
+      "icon_sha256": "adf9074cc94863aead4a3a64ac52b893b63174456aec97132a9c245578a6023e",
       "url": "https://gettori.app/packs/files/agents/codex.toml",
-      "min_tori": "26.1009.0-alpha"
+      "min_tori": "26.1009.0-alpha",
+      "icon_url": "https://gettori.app/packs/files/icons/codex.svg"
     },
     {
       "kind": "agents",
@@ -1778,8 +1782,10 @@
         "macos",
         "windows"
       ],
+      "icon_sha256": "f774b017386adf3382e254fc390083ffe26fb6f0745162abfd404bdfd523eee9",
       "url": "https://gettori.app/packs/files/agents/copilot.toml",
-      "min_tori": "26.1009.0-alpha"
+      "min_tori": "26.1009.0-alpha",
+      "icon_url": "https://gettori.app/packs/files/icons/copilot.svg"
     },
     {
       "kind": "agents",
@@ -1801,8 +1807,10 @@
         "macos",
         "windows"
       ],
+      "icon_sha256": "a0ac4a8dda10add6e3ffbb915748a7728abbadbb3172f0fd4f608e3dbea7a960",
       "url": "https://gettori.app/packs/files/agents/opencode.toml",
-      "min_tori": "26.1009.0-alpha"
+      "min_tori": "26.1009.0-alpha",
+      "icon_url": "https://gettori.app/packs/files/icons/opencode.svg"
     },
     {
       "kind": "agents",
@@ -1824,8 +1832,10 @@
         "macos",
         "windows"
       ],
+      "icon_sha256": "fb1f9f88a57fc42d05fa575df27ceb8081b44cbb3c69f867a95fac71aa5064b2",
       "url": "https://gettori.app/packs/files/agents/pi.toml",
-      "min_tori": "26.1009.0-alpha"
+      "min_tori": "26.1009.0-alpha",
+      "icon_url": "https://gettori.app/packs/files/icons/pi.svg"
     }
   ]
 }
