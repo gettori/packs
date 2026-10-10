@@ -4,12 +4,11 @@ Every language server, linter, debugger, formatter, theme and agent that
 [Tori](https://github.com/gettori/tori) knows about is a pack: one file in this
 repo.
 
-Tori ships a pinned snapshot of this repo inside the app. An upcoming Tori
-release adds a signed catalog, so anything merged here after that snapshot
-reaches Tori without a new release: each pane in Settings gets an "Add a ..."
-button that lists it, and [gettori.app/packs](https://gettori.app/packs)
-lists every pack. Until then, a
-pack reaches Tori through its next snapshot, or through the folder below.
+Tori ships a pinned snapshot of this repo inside the app, and from 26.1010.0
+it also reads a signed catalog of it. Anything merged here reaches Tori
+without a new release: each pane in Settings has an "Add a ..." button that
+lists it, and [gettori.app/packs](https://gettori.app/packs) lists every
+pack.
 
 ## The folders
 
