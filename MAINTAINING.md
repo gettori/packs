@@ -6,12 +6,12 @@ do when a credential leaks. Contributors want README.md instead.
 ## How a pack reaches Tori
 
 1. A pull request to `main` runs `validate.yml`. It downloads the tori CLI
-   from the GitHub releases named in `tori-support.json`. The newest release
-   checks every pack offline and builds the index, then downloads and hashes
-   the changed packs' release assets and looks up their pinned packages. The
-   oldest release loads only the packs whose `min_tori` is that release.
+   from the newest tori release, which checks every pack and icon offline and
+   builds the index, then downloads and hashes the changed packs' release
+   assets and looks up their pinned packages. The oldest release named in
+   `tori-support.json` loads only the packs whose `min_tori` is that release.
 2. A merge to `main` runs `publish.yml`. It builds the index with the newest
-   CLI, signs it with key `k1`, commits `index.json` and `index.json.sig` to
+   tori release's CLI, signs it with key `k1`, commits `index.json` and `index.json.sig` to
    the `published` branch, and POSTs the site's deploy hook.
 3. The site (gettori/docsweb, a Cloudflare Worker) rebuilds. Once it serves
    packs, it reads the index from `published` and serves it with every pack
@@ -22,9 +22,16 @@ do when a credential leaks. Contributors want README.md instead.
    every downloaded file against its row's sha256.
 
 Publish also runs every Monday and can be started by hand
-(`gh workflow run publish.yml --repo gettori/packs`). The index expires 30
-days after it is signed. Tori still uses an expired index but marks it stale,
-so the weekly run is what keeps it fresh in a quiet month.
+(`gh workflow run publish.yml --repo gettori/packs`). The index expires 14
+days after it is signed, so the weekly run is what keeps it fresh in a quiet
+month, and two failed runs in a row let it lapse. Tori keeps using a cached
+index past its expiry but marks it stale; a fresh install refuses an expired
+one and sees no catalog until the next run succeeds.
+
+Both workflows take the newest tori release on their own, so a tori release
+needs nothing here. The first run after one picks up whatever it changed in
+`packs-index` or `validate-pack`. Agent icons reached the index that way, with
+26.1010.0.
 
 ## tori-support.json
 
@@ -132,11 +139,11 @@ that its `packs_commit` is a commit on `main`, too.
 
 ## Known gaps
 
-- Rollback on a fresh install. Every index ever signed stays valid. A Tori
-  with a cache refuses an index older than the one it has, but a fresh install
-  accepts any of them, even an expired one. So someone who can push to
-  `published`, or serve the site, could bring back a pack that was later
-  pulled. Tracked in gettori/tickets#71, to be settled before the catalog
-  ships.
+- Rollback within the expiry. Every index ever signed sits in `published`'s
+  history. A Tori with a cache refuses one older than it has, and since
+  26.1010.0 every Tori refuses one past its `expires`. A fresh install still
+  accepts an old index signed in the last 14 days, so someone who can push to
+  `published`, or serve the site, could bring back a pack pulled within that
+  window.
 - `actions/checkout@v4` runs on Node 20, which GitHub has deprecated. Bump it
   here and in tori together.

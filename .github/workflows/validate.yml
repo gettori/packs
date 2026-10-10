@@ -1,8 +1,8 @@
 # Checks every pull request with the tori CLI itself, the same loaders the app
-# runs. The newest release tori-support.json names checks every pack offline,
-# builds the index (so a schema_version missing from tori-support.json fails
-# here, not at publish), and downloads and hashes the changed packs' assets and
-# looks up their pinned packages. The oldest release loads only the packs
+# runs. The newest tori release checks every pack offline, builds the index (so
+# a schema_version missing from tori-support.json fails here, not at publish),
+# and downloads and hashes the changed packs' assets and looks up their pinned
+# packages. The oldest release tori-support.json names loads only the packs
 # whose min_tori is that release: a pack at a newer schema is not its to read.
 #
 # No secrets and a read-only token: this runs on contributors' files.
@@ -28,13 +28,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BASE: ${{ github.event.pull_request.base.sha }}
         run: |
-          versions=$(jq -r '[.[][]] | unique | .[]' tori-support.json | sort -V)
-          oldest=$(printf '%s\n' "$versions" | head -1)
-          newest=$(printf '%s\n' "$versions" | tail -1)
-          changed=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- lsp dap formatters themes agents)
+          oldest=$(jq -r '[.[][]] | unique | .[]' tori-support.json | sort -V | head -1)
+          changed=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- lsp dap formatters themes agents icons)
 
-          echo "::group::tori $newest, every pack"
-          .github/scripts/tori-cli.sh "$newest" "$RUNNER_TEMP/newest"
+          echo "::group::the newest tori, every pack"
+          newest=$(.github/scripts/tori-cli.sh newest "$RUNNER_TEMP/newest")
+          echo "tori $newest"
           "$RUNNER_TEMP/newest/tori" validate-pack .
           "$RUNNER_TEMP/newest/tori" packs-index .
           if [ -n "$changed" ]; then
