@@ -48,7 +48,9 @@ download its CLI.
 
 `main` requires a pull request. Required approvals are 0, because a sole
 maintainer cannot approve their own PR; raise it once there is a second
-maintainer. Force pushes and deletion are off. Admins can bypass.
+maintainer. Force pushes and deletion are off. Admins can bypass. No status
+check is required: a red `validate` or `dco` blocks nothing, the maintainer
+reads it before merging. `dco` skips the maintainer's own pull requests.
 
 `published` holds only the signed index and a README. Nobody edits it by
 hand. Force pushes and deletion are off, enforced for admins too, so its
