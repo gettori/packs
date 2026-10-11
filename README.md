@@ -58,11 +58,34 @@ The schema for each kind is documented in the Tori repo:
    own as `tori-cli-<version>-macos-universal.tar.gz`. `--assets` downloads
    every release asset the pack names and checks its sha256, and
    `--registry` checks that every pinned package exists.
-5. Open a pull request. The template asks how you measured it.
+5. Commit with `git commit -s`, which signs the commit off (see
+   [Sign-off](#sign-off-dco)).
+6. Open a pull request. The template asks how you measured it.
 
 A new agent that speaks ACP, or a language server, debugger or formatter that
 Tori already knows how to drive, needs only its pack. An agent that needs a new
 transcript parser is a change to Tori first: open an issue there.
+
+## Sign-off (DCO)
+
+Every commit on a pull request carries a `Signed-off-by:` trailer whose email
+matches the commit author's. `git commit -s` adds it. It certifies the
+[Developer Certificate of Origin](https://developercertificate.org): that you
+wrote the change, or have the right to submit it under this repo's license.
+There is no CLA and nothing else to sign.
+
+CI checks it. The `dco` job walks every non-merge commit of the pull request
+and fails naming each one whose trailers have no `Signed-off-by` for the
+author's email. Two things trip it that are not obvious:
+
+- If your employer owns what you write, get their permission before the first
+  commit. Clause (a) of the certificate, that you have the right to submit the
+  change, is only true with it.
+- A suggestion applied through GitHub's web UI lands as a commit with no
+  trailer. Apply review suggestions locally and sign them off instead.
+
+Forgot one? `git commit --amend -s` fixes the last commit, and
+`git rebase --signoff <base>` fixes a branch; then force-push.
 
 ## Using a pack without the catalog
 

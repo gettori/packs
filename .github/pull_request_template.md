@@ -28,6 +28,8 @@
       the pack that already has it
 - [ ] `contributor` names you and `license` is the SPDX id of what you are
       contributing
+- [ ] Every commit is signed off with `git commit -s` (see the README's
+      Sign-off section)
 
 ## Notes
 
