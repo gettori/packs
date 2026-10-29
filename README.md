@@ -55,7 +55,8 @@ The schema for each kind is documented in the Tori repo:
    ```
 
    `tori` is the app's own binary. Each Tori release also publishes it on its
-   own as `tori-cli-<version>-macos-universal.tar.gz`. `--assets` downloads
+   own as `tori-cli-<version>-macos-arm64.tar.gz` and
+   `tori-cli-<version>-macos-x64.tar.gz`. `--assets` downloads
    every release asset the pack names and checks its sha256, and
    `--registry` checks that every pinned package exists.
 5. Commit with `git commit -s`, which signs the commit off (see
