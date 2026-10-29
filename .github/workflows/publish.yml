@@ -68,3 +68,28 @@ jobs:
             exit 0
           fi
           curl -fsS -X POST "$SITE_DEPLOY_HOOK" > /dev/null
+
+  # A failed run leaves the served index aging toward its 14-day expiry, and
+  # GitHub's failure email is easy to miss. An open issue is not: it reaches
+  # every watcher, and the next failure comments on it instead of piling up.
+  report:
+    needs: publish
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TITLE: Publish is failing, the served index will expire
+      RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      EVENT: ${{ github.event_name }}
+    steps:
+      - run: |
+          body="Run $RUN ($EVENT) failed. The served index expires 14 days after the last good run. Fix it, start \`gh workflow run publish.yml\`, then close this issue."
+          number=$(gh issue list --state open --author app/github-actions --json number,title -q ".[] | select(.title == env.TITLE) | .number" | head -1)
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "$body"
+          else
+            gh issue create --title "$TITLE" --body "$body"
+          fi

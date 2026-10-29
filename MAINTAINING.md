@@ -28,6 +28,11 @@ month, and two failed runs in a row let it lapse. Tori keeps using a cached
 index past its expiry but marks it stale; a fresh install refuses an expired
 one and sees no catalog until the next run succeeds.
 
+A failed publish run opens an issue titled "Publish is failing, the served
+index will expire", or comments on it if it is already open. The first failed
+Monday run leaves about a week before the index lapses. Close the issue once a
+run succeeds; nothing closes it on its own.
+
 Both workflows take the newest tori release on their own, so a tori release
 needs nothing here. The first run after one picks up whatever it changed in
 `packs-index` or `validate-pack`. Agent icons reached the index that way, with
