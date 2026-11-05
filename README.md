@@ -4,11 +4,12 @@ Every language server, linter, debugger, formatter, theme and agent that
 [Tori](https://github.com/gettori/tori) knows about is a pack: one file in this
 repo.
 
-Tori ships a pinned snapshot of this repo inside the app, and from 26.1010.0
-it also reads a signed catalog of it. Anything merged here reaches Tori
-without a new release: each pane in Settings has an "Add a ..." button that
-lists it, and [gettori.app/packs](https://gettori.app/packs) lists every
-pack.
+Tori ships the few packs it needs itself inside the app, and installs the
+rest from a signed catalog of this repo. Anything merged here reaches Tori
+without a new release: its page on [gettori.app/packs](https://gettori.app/packs)
+has an **Install in Tori** button, which opens a dialog in Tori that asks
+before it writes the file. Tori also offers a pack on its own when a file you
+open, F5 or Format needs it.
 
 ## The folders
 
@@ -105,9 +106,16 @@ Tori runs what a pack tells it to, so the validator limits what that can be.
 - An agent's `[chat].program` is a runner, `npx`, `bunx` or `uvx`, and its
   arguments pin `package@version`.
 - npm and pip installs pin an exact version. Release assets carry a sha256.
-- A hint's `update` and `uninstall` scripts may use the shell, but not `curl`,
-  `wget`, `sudo`, `eval`, `sh -c` or `bash -c`, and they may not pipe into a
-  shell. Tori shows the script and asks before it runs one.
+- A hint's `text` may name commands in backticks. The first one is the
+  install command; later ones are context, and none at all is fine. That
+  command and the `update` and `uninstall` scripts may start only `brew`,
+  `cs`, `dotnet`, `gem`, `ghcup`, `go`, `opam`, `rustup` or `xcode-select`,
+  plus a non-recursive `rm` in `uninstall`. Every statement counts, including
+  what runs inside `$(...)`.
+- Those three may not use `curl`, `wget`, `sudo`, `eval`, `sh -c` or
+  `bash -c`, may not pipe into a shell, and may not substitute a process.
+  Tori never runs one from a link: the server's card in Settings shows it and
+  runs it when you press Install, Update or Uninstall.
 
 A reviewer still reads every file.
 
