@@ -33,10 +33,30 @@ index will expire", or comments on it if it is already open. The first failed
 Monday run leaves about a week before the index lapses. Close the issue once a
 run succeeds; nothing closes it on its own.
 
-Both workflows take the newest tori release on their own, so a tori release
-needs nothing here. The first run after one picks up whatever it changed in
-`packs-index` or `validate-pack`. Agent icons reached the index that way, with
-26.1010.0.
+Both workflows take the newest tori release on their own. After a tori
+release that changes `packs-index` or `validate-pack`, start a publish the
+same day:
+
+```sh
+gh workflow run publish.yml --repo gettori/packs
+```
+
+Otherwise the served index keeps the old fields until Monday, while people
+already run the build that reads the new ones. From the release after
+26.1104.0, Tori offers a pack for a file, F5 or Format only when the index
+row names its `extensions` (lsp and formatters) or `languages` (dap), so a
+late publish means no offers for up to a week. Agent icons reached the index
+the slow way, with 26.1010.0.
+
+## The bundled set
+
+Tori ships only the packs it needs itself: the binary ships what the pack
+launches, a fresh install depends on it, or Tori's own repo is developed with
+it. The list is `scripts/bundle.txt` in tori, and `scripts/sync-packs.sh`
+copies only those files from here into the app. A pack joining or leaving the
+bundled set is a tori pull request, not one here. Every other pack is
+installed from its page on gettori.app, through a dialog in Tori that reads
+the pack from the signed index.
 
 ## tori-support.json
 
