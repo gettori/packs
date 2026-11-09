@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-02T12:21:26Z",
-  "expires": "2026-11-16T12:21:26Z",
-  "packs_commit": "1010593315dde6957cad0293779dceb0c94d8c4e",
+  "generated_at": "2026-11-09T12:50:18Z",
+  "expires": "2026-11-23T12:50:18Z",
+  "packs_commit": "1f60d004d3673d7872b53876e4c92a4889cd201f",
   "rows": [
     {
       "kind": "lsp",
@@ -23,6 +23,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "astro"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/astro.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -46,6 +50,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "bash",
+        "sh"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/bash.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -69,6 +78,22 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "cjs",
+        "css",
+        "cts",
+        "gql",
+        "graphql",
+        "js",
+        "json",
+        "jsonc",
+        "jsx",
+        "mjs",
+        "mts",
+        "ts",
+        "tsx"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/biome.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -90,6 +115,19 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "c",
+        "cc",
+        "cpp",
+        "cxx",
+        "h",
+        "hh",
+        "hpp",
+        "hxx",
+        "m",
+        "mm"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/clangd.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -111,6 +149,13 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "clj",
+        "cljc",
+        "cljs",
+        "edn"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/clojure.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -134,6 +179,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "cs"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/csharp.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -157,6 +206,12 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "css",
+        "less",
+        "scss"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/css.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -180,6 +235,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "dart"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/dart.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -203,6 +262,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "ex",
+        "exs"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/elixir.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -226,6 +290,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "elm"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/elm.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -249,6 +317,17 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "cjs",
+        "cts",
+        "js",
+        "jsx",
+        "mjs",
+        "mts",
+        "ts",
+        "tsx"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/eslint.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -272,6 +351,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "fish"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/fish.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -295,6 +378,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "go"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/go.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -318,6 +405,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "gql",
+        "graphql"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/graphql.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -341,6 +433,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "hs",
+        "lhs"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/haskell.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -364,6 +461,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "htm",
+        "html"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/html.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -387,6 +489,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "java"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/java.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -410,6 +516,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "json",
+        "jsonc"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/json.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -433,6 +544,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "kt",
+        "kts"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/kotlin.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -454,6 +570,13 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "bib",
+        "cls",
+        "sty",
+        "tex"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/latex.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -475,6 +598,10 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "lua"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/lua.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -496,6 +623,11 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "markdown",
+        "md"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/markdown.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -519,6 +651,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "ml",
+        "mli"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/ocaml.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -542,6 +679,17 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "cjs",
+        "cts",
+        "js",
+        "jsx",
+        "mjs",
+        "mts",
+        "ts",
+        "tsx"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/oxlint.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -565,6 +713,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "pl",
+        "pm"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/perl.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -588,6 +741,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "php"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/php.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -611,6 +768,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "prisma"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/prisma.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -634,6 +795,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "py",
+        "pyi"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/python.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -657,6 +823,12 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "gemspec",
+        "rake",
+        "rb"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/ruby.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -680,6 +852,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "py",
+        "pyi"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/ruff.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -703,6 +880,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "rs"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/rust.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -726,6 +907,12 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "sbt",
+        "sc",
+        "scala"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/scala.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -749,6 +936,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "svelte"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/svelte.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -772,6 +963,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "swift"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/swift.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -795,6 +990,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "tf",
+        "tfvars"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/terraform.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -816,6 +1016,10 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "toml"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/toml.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -839,6 +1043,17 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "cjs",
+        "cts",
+        "js",
+        "jsx",
+        "mjs",
+        "mts",
+        "ts",
+        "tsx"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/typescript.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -860,6 +1075,10 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "typ"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/typst.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -883,6 +1102,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "vim"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/vim.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -904,6 +1127,13 @@
       "platforms": [
         "macos"
       ],
+      "extensions": [
+        "xml",
+        "xsd",
+        "xsl",
+        "xslt"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/xml.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -927,6 +1157,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "yaml",
+        "yml"
+      ],
+      "runs_project_code": false,
       "url": "https://gettori.app/packs/files/lsp/yaml.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -950,6 +1185,11 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "zig",
+        "zon"
+      ],
+      "runs_project_code": true,
       "url": "https://gettori.app/packs/files/lsp/zig.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -972,6 +1212,9 @@
         "linux",
         "macos",
         "windows"
+      ],
+      "languages": [
+        "py"
       ],
       "url": "https://gettori.app/packs/files/dap/debugpy.toml",
       "min_tori": "26.1009.0-alpha"
@@ -996,6 +1239,9 @@
         "macos",
         "windows"
       ],
+      "languages": [
+        "go"
+      ],
       "url": "https://gettori.app/packs/files/dap/delve.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1018,6 +1264,19 @@
         "linux",
         "macos",
         "windows"
+      ],
+      "languages": [
+        "c",
+        "cc",
+        "cpp",
+        "cxx",
+        "h",
+        "hh",
+        "hpp",
+        "hxx",
+        "m",
+        "mm",
+        "rs"
       ],
       "url": "https://gettori.app/packs/files/dap/lldb.toml",
       "min_tori": "26.1009.0-alpha"
@@ -1042,6 +1301,7 @@
         "macos",
         "windows"
       ],
+      "extensions": [],
       "url": "https://gettori.app/packs/files/formatters/biome.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1064,6 +1324,10 @@
         "linux",
         "macos",
         "windows"
+      ],
+      "extensions": [
+        "py",
+        "pyi"
       ],
       "url": "https://gettori.app/packs/files/formatters/black.toml",
       "min_tori": "26.1009.0-alpha"
@@ -1088,6 +1352,9 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "go"
+      ],
       "url": "https://gettori.app/packs/files/formatters/gofmt.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1111,6 +1378,7 @@
         "macos",
         "windows"
       ],
+      "extensions": [],
       "url": "https://gettori.app/packs/files/formatters/oxfmt.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1134,6 +1402,7 @@
         "macos",
         "windows"
       ],
+      "extensions": [],
       "url": "https://gettori.app/packs/files/formatters/prettier.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1156,6 +1425,10 @@
         "linux",
         "macos",
         "windows"
+      ],
+      "extensions": [
+        "py",
+        "pyi"
       ],
       "url": "https://gettori.app/packs/files/formatters/ruff.toml",
       "min_tori": "26.1009.0-alpha"
@@ -1180,6 +1453,10 @@
         "macos",
         "windows"
       ],
+      "extensions": [
+        "sh",
+        "bash"
+      ],
       "url": "https://gettori.app/packs/files/formatters/shfmt.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1202,6 +1479,10 @@
         "linux",
         "macos",
         "windows"
+      ],
+      "extensions": [
+        "lua",
+        "luau"
       ],
       "url": "https://gettori.app/packs/files/formatters/stylua.toml",
       "min_tori": "26.1009.0-alpha"
@@ -1226,6 +1507,7 @@
         "macos",
         "windows"
       ],
+      "extensions": [],
       "url": "https://gettori.app/packs/files/formatters/vite-plus.toml",
       "min_tori": "26.1009.0-alpha"
     },
@@ -1717,7 +1999,7 @@
       "id": "claude",
       "role": null,
       "schema_version": 5,
-      "sha256": "88a2c2ac86ccac67bca94fc48ab04882b0ce338da55cf200597d867ee0163d04",
+      "sha256": "8e40fdc1d615e143a5cddb17e50ce9ea87dc81938f077534ca2cef9cecd3f163",
       "label": "Claude",
       "description": "Claude Code, with chat over its stream-json protocol",
       "contributor": {
