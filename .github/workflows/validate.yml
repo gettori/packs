@@ -4,6 +4,8 @@
 # and downloads and hashes the changed packs' assets and looks up their pinned
 # packages. The oldest release tori-support.json names loads only the packs
 # whose min_tori is that release: a pack at a newer schema is not its to read.
+# Theme legibility is measured only in the app's TypeScript, so the newest
+# release's source also runs its contrast gate over every theme.
 #
 # No secrets and a read-only token: this runs on contributors' files.
 name: Validate
@@ -22,6 +24,27 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # The contrast check runs Tori's own TypeScript under Node's type stripping.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Check theme contrast with the newest Tori
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          newest=$(gh release list --repo gettori/tori --limit 30 --exclude-drafts --json tagName \
+            -q '[.[].tagName | select(startswith("macos-v") or startswith("v"))][0]')
+          src="$RUNNER_TEMP/tori-src"
+          mkdir -p "$src"
+          gh api "repos/gettori/tori/tarball/$newest" > "$RUNNER_TEMP/tori-src.tgz"
+          tar -xzf "$RUNNER_TEMP/tori-src.tgz" --strip-components=1 -C "$src"
+          if [ -f "$src/scripts/check-theme-contrast.mjs" ]; then
+            node "$src/scripts/check-theme-contrast.mjs" themes
+          else
+            echo "tori $newest predates the contrast check, skipped"
+          fi
 
       - name: Validate with each supported Tori
         env:

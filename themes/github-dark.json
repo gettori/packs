@@ -13,8 +13,8 @@
     "input": "#161a20",
     "hover": "#21262d",
 
-    "borderTint": "#e6edf3",
-    "lineTint": "#e6edf3",
+    "borderTint": "#e6edf33c",
+    "lineTint": "#e6edf348",
     "rail": "#26292e",
 
     "text": "#e6edf3",
