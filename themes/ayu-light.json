@@ -19,17 +19,17 @@
 
     "text": "#5c6166",
     "textMuted": "#5d6671",
-    "textSubtle": "#848587",
+    "textSubtle": "#808183",
     "textOnEmphasis": "#fcfcfc",
 
-    "accent": "#996010",
+    "accent": "#915808",
     "accentSubtle": "#d7e4f6",
 
-    "danger": "#ac5151",
+    "danger": "#a44949",
     "dangerStrong": "#b65656",
-    "attention": "#906500",
+    "attention": "#885d00",
     "attentionStrong": "#ae5c26",
-    "success": "#577500",
+    "success": "#516f00",
     "successStrong": "#5d7d00",
     "info": "#307962",
     "fillTint": "#5c6166",

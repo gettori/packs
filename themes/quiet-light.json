@@ -22,14 +22,14 @@
     "textSubtle": "#777777",
     "textOnEmphasis": "#f5f5f5",
 
-    "accent": "#705697",
+    "accent": "#6f5596",
     "accentSubtle": "#ded9e5",
 
     "danger": "#aa3731",
     "dangerStrong": "#aa3731",
-    "attention": "#7a660d",
+    "attention": "#746007",
     "attentionStrong": "#9c5d27",
-    "success": "#387421",
+    "success": "#336f1c",
     "successStrong": "#3c7c23",
     "info": "#29717e",
     "fillTint": "#333333",
