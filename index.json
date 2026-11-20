@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-16T12:42:55Z",
-  "expires": "2026-11-30T12:42:55Z",
-  "packs_commit": "1f60d004d3673d7872b53876e4c92a4889cd201f",
+  "generated_at": "2026-11-20T15:23:48Z",
+  "expires": "2026-12-04T15:23:48Z",
+  "packs_commit": "e66aae19d7e51e8afe4981751c57fb937776ba3c",
   "rows": [
     {
       "kind": "lsp",
@@ -1516,7 +1516,7 @@
       "id": "atom-one-light",
       "role": null,
       "schema_version": 1,
-      "sha256": "d1858e3bee10e8ebbad9416c4285f4f8fdd3e828ee696e82e0f79a0c76f611f6",
+      "sha256": "0752dbe3528363c24f40c649d54b243ae0fce79df393e6237f73cbea0c8c8550",
       "label": "Atom One Light",
       "description": "A port of Atom's One Light",
       "contributor": {
@@ -1562,7 +1562,7 @@
       "id": "ayu-light",
       "role": null,
       "schema_version": 1,
-      "sha256": "9235852bcb35a4c5e1fda42e6556264ed62fd1383c30b1aec598d9278fa67a2a",
+      "sha256": "fb74c0a9e3f672a89ab30808aa3af9994b78fea60f095a462ee9148ad4395918",
       "label": "Ayu Light",
       "description": "A port of ayu's light variant",
       "contributor": {
@@ -1608,7 +1608,7 @@
       "id": "catppuccin-latte",
       "role": null,
       "schema_version": 1,
-      "sha256": "d19a715a2b704f87111ec9456919d60130b29c360b3d19391cffcbc64e5e8e4e",
+      "sha256": "6f7ee63dacdcbad9bbc3e9fce8b245087a908b51c771591f761b1d204c5a4936",
       "label": "Catppuccin Latte",
       "description": "A port of Catppuccin Latte",
       "contributor": {
@@ -1677,7 +1677,7 @@
       "id": "dracula",
       "role": null,
       "schema_version": 1,
-      "sha256": "c8cc58079ba2c31475ed74c7c9b1ba8ef97dd056011fbe9e8acefee9266ef686",
+      "sha256": "fd1120a03e6bb13b0a968034ca5832e440a98673bc8f415f14d519dc7fceab16",
       "label": "Dracula",
       "description": "A port of Dracula",
       "contributor": {
@@ -1700,7 +1700,7 @@
       "id": "github-dark",
       "role": null,
       "schema_version": 1,
-      "sha256": "541b7fcf30080292d19a47dd46e66e562c3c235721a7ee1354255e9f4fcb3cf0",
+      "sha256": "be74e8997f858d2e04d1f3c54fc4849cae6bd7a330d8d949492cec2a4a946dc5",
       "label": "GitHub Dark",
       "description": "A port of GitHub's dark theme",
       "contributor": {
@@ -1723,7 +1723,7 @@
       "id": "github-light",
       "role": null,
       "schema_version": 1,
-      "sha256": "91acde7328d74e6e9e4c22c62710b17b495091e00667c29379d229a963d1eab7",
+      "sha256": "ab09e3ae1c1c56a3e357e32aa5a11591f71fe60f6a47e2a3e4227e86640de699",
       "label": "GitHub Light",
       "description": "A port of GitHub's light theme",
       "contributor": {
@@ -1792,7 +1792,7 @@
       "id": "one-dark-pro",
       "role": null,
       "schema_version": 1,
-      "sha256": "a059ccf94d86e20c5aa2cb0d81ffce9ba8ef5d196c329c650440c82f469f609a",
+      "sha256": "561ee4f757015d1227367dc397ad4031bcd77c873d3763b7a9cd4051bef16864",
       "label": "One Dark Pro",
       "description": "A port of One Dark Pro",
       "contributor": {
@@ -1815,7 +1815,7 @@
       "id": "quiet-light",
       "role": null,
       "schema_version": 1,
-      "sha256": "6927b47dda2831d8147f7dd9157d02de5d3cd4bd9a63a4014b2c1e0319d05569",
+      "sha256": "44f5a6beb036ab70dafbb4006c224a5ca955819da77aaed7fa331195d39088df",
       "label": "Quiet Light",
       "description": "A port of Quiet Light from VS Code",
       "contributor": {
@@ -1884,7 +1884,7 @@
       "id": "solarized-light",
       "role": null,
       "schema_version": 1,
-      "sha256": "f56bdb4e06eaf004897991964d858d90cf000e4c31a6a91323871204c01adc26",
+      "sha256": "a31d4efbce354b7d9d5c016691379f496211b0d8166487398244467d94cc607f",
       "label": "Solarized Light",
       "description": "A port of Solarized Light",
       "contributor": {
