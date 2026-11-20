@@ -19,13 +19,13 @@
 
     "text": "#f8f8f2",
     "textMuted": "#c5c8d6",
-    "textSubtle": "#6c7aaa",
+    "textSubtle": "#6d7bab",
     "textOnEmphasis": "#21222c",
 
     "accent": "#bd93f9",
     "accentSubtle": "#3e4151",
 
-    "danger": "#ff6969",
+    "danger": "#ff6b6b",
     "dangerStrong": "#ff5555",
     "attention": "#f1fa8c",
     "attentionStrong": "#ffb86c",
