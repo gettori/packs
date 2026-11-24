@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-23T14:39:51Z",
-  "expires": "2026-12-07T14:39:51Z",
-  "packs_commit": "e66aae19d7e51e8afe4981751c57fb937776ba3c",
+  "generated_at": "2026-11-24T01:03:23Z",
+  "expires": "2026-12-08T01:03:23Z",
+  "packs_commit": "bc4e43cfcd28cbe4ef5b696851f4f40fdbd88ef7",
   "rows": [
     {
       "kind": "lsp",
