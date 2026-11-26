@@ -1,0 +1,36 @@
+# MDX via @mdx-js/language-server. See LSP-SERVERS.md.
+
+schema_version = 1
+id = "mdx"
+label = "MDX"
+description = "MDX documents, through the MDX language server"
+license = "MIT"
+contributor = { name = "Tori", github = "gettori" }
+verified_against = "@mdx-js/language-server 0.6.4"
+verified_on = "2026-11-26"
+root_markers = ["package.json", ".git"]
+
+# Loads the project's own TypeScript and its tsconfig, which can name remark
+# plugins for the server to run.
+runs_project_code = true
+
+[languages]
+mdx = "mdx"
+
+[launch]
+kind = "managed"
+runtime = "node"
+program = "mdx-language-server"
+args = ["--stdio"]
+
+[install]
+kind = "npm"
+package = "@mdx-js/language-server"
+version = "0.6.4"
+
+# Both are needed. TypeScript is off unless `enabled` is set, which leaves only
+# the markdown features (headings, links, symbols); `tsdk` says which
+# `typescript/lib` to load, and the server refuses `initialize` without it.
+[initialization_options.typescript]
+enabled = true
+tsdk = "${tsdk}"
